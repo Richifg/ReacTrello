@@ -18,6 +18,12 @@ class List extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  shouldComponentUpdate(_, nextState) {
+    const { adding, cards } = this.state;
+    // TODO: not responding to props changes
+    return adding !== nextState.adding || cards !== nextState.cards;
+  }
+
   handleInputCard(e) {
     if ((e.type === 'keypress' && e.key === 'Enter') || e.type === 'click') {
       this.setState({ adding: true });
@@ -26,12 +32,15 @@ class List extends React.Component {
 
   handleSaveCard(e) {
     if ((e.type === 'keypress' && e.key === 'Enter') || e.type === 'click') {
-      this.setState((prev) => {
-        const cards = prev.cards.slice();
-        document.getElementById('card-input').value = null;
-        if (prev.newCard) cards.push(prev.newCard);
-        return ({ cards, newCard: null });
-      });
+      const { newCard } = this.state;
+      if (newCard) {
+        this.setState((prev) => {
+          const cards = prev.cards.slice();
+          cards.push(prev.newCard);
+          document.getElementById('card-input').value = null;
+          return ({ cards, newCard: null });
+        });
+      }
       e.preventDefault();
     }
   }
