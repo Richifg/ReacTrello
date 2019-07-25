@@ -19,12 +19,14 @@ const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_CARD: {
       const { board, list, newCard } = action.payload;
-      const updatedList = Object.assign({}, state.boards[board][list]);
+      const updatedList = state.boards[board][list].slice();
       updatedList.push(newCard);
       return Object.assign({}, state, {
-        boards: Object.assign(
-          {}, state.boards, { [list]: updatedList },
-        ),
+        boards: Object.assign({}, state.boards, {
+          [board]: Object.assign({}, state.boards[board], {
+            [list]: updatedList,
+          }),
+        }),
       });
     }
     case ADD_LIST: {

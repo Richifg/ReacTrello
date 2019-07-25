@@ -1,15 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addCardAction } from '../redux/actions';
 import { CardDisplay, CardInput } from './Card';
 
+
+const mapDispathToProps = dispatch => (
+  { addCard: payload => dispatch(addCardAction(payload)) }
+);
+
+const mapStateToProps = (state, ownProps) => {
+  const { name, board } = ownProps;
+  return (
+    { cards: state.boards[board][name] }
+  );
+};
 
 class List extends React.Component {
   constructor(props) {
     super(props);
-    const { cards } = this.props;
     this.state = {
       adding: false,
-      cards,
       newCard: null,
     };
     this.handleInputCard = this.handleInputCard.bind(this);
@@ -18,10 +29,9 @@ class List extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  shouldComponentUpdate(_, nextState) {
-    const { adding, cards } = this.state;
-    // TODO: not responding to props changes
-    return adding !== nextState.adding || cards !== nextState.cards;
+  shouldComponentUpdate(nextProps, nextState) {
+    const { adding } = this.state;
+    return nextProps !== this.props || nextState.adding !== adding;
   }
 
   handleInputCard(e) {
@@ -34,12 +44,10 @@ class List extends React.Component {
     if ((e.type === 'keypress' && e.key === 'Enter') || e.type === 'click') {
       const { newCard } = this.state;
       if (newCard) {
-        this.setState((prev) => {
-          const cards = prev.cards.slice();
-          cards.push(prev.newCard);
-          document.getElementById('card-input').value = null;
-          return ({ cards, newCard: null });
-        });
+        document.getElementById('card-input').value = null;
+        const { addCard, name: list, board } = this.props;
+        addCard({ board, list, newCard });
+        this.setState({ newCard: null });
       }
       e.preventDefault();
     }
@@ -59,11 +67,11 @@ class List extends React.Component {
   }
 
   render() {
-    const { title } = this.props;
-    const { adding, cards } = this.state;
+    const { name, cards } = this.props;
+    const { adding } = this.state;
     return (
       <div className="card list mb-4">
-        <h6 className="card-title mb-0 ml-3 mt-1">{title}</h6>
+        <h6 className="card-title mb-0 ml-3 mt-1">{name}</h6>
         <div className="card-body p-2">
           {cards.map(desc => <CardDisplay key={desc} description={desc} />)}
           {adding
@@ -102,12 +110,15 @@ class List extends React.Component {
 }
 
 List.defaultProps = {
+  addCard() {},
   cards: [],
 };
 
 List.propTypes = {
-  title: PropTypes.string.isRequired,
   cards: PropTypes.arrayOf(PropTypes.string),
+  addCard: PropTypes.func,
+  name: PropTypes.string.isRequired,
+  board: PropTypes.string.isRequired,
 };
 
-export default List;
+export default connect(mapStateToProps, mapDispathToProps)(List);

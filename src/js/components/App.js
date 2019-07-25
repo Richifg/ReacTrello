@@ -14,16 +14,13 @@ export default () => (
           <h3>Board Name</h3>
           <div id="board" className="row">
             <div className="col-auto">
-              <List title="Monday" cards={['Tarea 1', 'Tarea 2']} />
+              <List board="temporal" name="Monday" />
             </div>
             <div className="col-auto">
-              <List title="Tuesday" cards={['Muchas cosas que hacer!']} />
+              <List board="temporal" name="Tuesday" cards={['Muchas cosas que hacer!']} />
             </div>
             <div className="col-auto">
-              <List title="I dont have any cards" />
-            </div>
-            <div className="col-auto">
-              <List title="another one" />
+              <List board="temporal" name="I have no cards :(" />
             </div>
           </div>
         </div>
