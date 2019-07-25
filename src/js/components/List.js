@@ -62,7 +62,7 @@ class List extends React.Component {
     const { title } = this.props;
     const { adding, cards } = this.state;
     return (
-      <div className="card mb-4">
+      <div className="card list mb-4">
         <h6 className="card-title mb-0 ml-3 mt-1">{title}</h6>
         <div className="card-body p-2">
           {cards.map(desc => <CardDisplay key={desc} description={desc} />)}
@@ -88,13 +88,11 @@ class List extends React.Component {
             </div>
           )
           : (
-            <div className="card-footer p-2" role="button" tabIndex={0} onKeyPress={this.handleInputCard} onClick={this.handleInputCard}>
-              <p className="card-text text-secondary">
-                {cards.length
-                  ? '+ Add another card'
-                  : '+ Add a card'
-                }
-              </p>
+            <div className="card-footer list-footer text-secondary p-2" role="button" tabIndex={0} onKeyPress={this.handleInputCard} onClick={this.handleInputCard}>
+              {cards.length
+                ? '+ Add another card'
+                : '+ Add a card'
+              }
             </div>
           )
         }

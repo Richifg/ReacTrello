@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CardDisplay = ({ description }) => (
-  <div className="card task-display mb-1 px-2 py-1 bg-light">
+  <div className="card card-display mb-1 px-2 py-1 bg-light">
     <p>{description}</p>
   </div>
 );

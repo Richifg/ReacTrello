@@ -1,0 +1,13 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "list";
+
+body, 
+html,
+#app{
+  height: 100%;
+  width: 100%;
+}
+
+#content {
+  flex: 1 0 auto;
+}
