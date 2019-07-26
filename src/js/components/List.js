@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addCardAction } from '../redux/actions';
-import { CardDisplay, CardInput } from './Card';
+import Card from './Card';
+import CardInput from './CardInput';
 
 class List extends React.Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class List extends React.Component {
       <div className="card list mb-4">
         <h6 className="card-title mb-0 ml-3 mt-1">{name}</h6>
         <div className="card-body p-2">
-          {cards.map(desc => <CardDisplay key={desc} description={desc} />)}
+          {cards.map(desc => <Card key={desc} description={desc} />)}
           { isAdding && (
             <CardInput
               id="card-input"
