@@ -4,23 +4,11 @@ import { connect } from 'react-redux';
 import { addCardAction } from '../redux/actions';
 import { CardDisplay, CardInput } from './Card';
 
-
-const mapDispathToProps = dispatch => (
-  { addCard: payload => dispatch(addCardAction(payload)) }
-);
-
-const mapStateToProps = (state, ownProps) => {
-  const { name, board } = ownProps;
-  return (
-    { cards: state.boards[board][name] }
-  );
-};
-
 class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      adding: false,
+      isAdding: false,
       newCard: null,
     };
     this.handleInputCard = this.handleInputCard.bind(this);
@@ -30,13 +18,13 @@ class List extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const { adding } = this.state;
-    return nextProps !== this.props || nextState.adding !== adding;
+    const { isAdding } = this.state;
+    return nextProps !== this.props || nextState.isAdding !== isAdding;
   }
 
   handleInputCard(e) {
     if ((e.type === 'keypress' && e.key === 'Enter') || e.type === 'click') {
-      this.setState({ adding: true });
+      this.setState({ isAdding: true });
     }
   }
 
@@ -58,7 +46,7 @@ class List extends React.Component {
       document.getElementById('card-input').focus();
       document.getElementById('add-card').click();
     } else {
-      this.setState({ adding: false, newCard: null });
+      this.setState({ isAdding: false, newCard: null });
     }
   }
 
@@ -68,25 +56,22 @@ class List extends React.Component {
 
   render() {
     const { name, cards } = this.props;
-    const { adding } = this.state;
+    const { isAdding } = this.state;
     return (
       <div className="card list mb-4">
         <h6 className="card-title mb-0 ml-3 mt-1">{name}</h6>
         <div className="card-body p-2">
           {cards.map(desc => <CardDisplay key={desc} description={desc} />)}
-          {adding
-            ? (
-              <CardInput
-                id="card-input"
-                onChange={this.handleChange}
-                onKeyPress={this.handleSaveCard}
-                onBlur={this.handleCancelCard}
-              />
-            )
-            : null
-          }
+          { isAdding && (
+            <CardInput
+              id="card-input"
+              onChange={this.handleChange}
+              onKeyPress={this.handleSaveCard}
+              onBlur={this.handleCancelCard}
+            />
+          )}
         </div>
-        { adding
+        { isAdding
           ? (
             <div className="p-2">
               <button id="add-card" type="button" className="btn btn-success" onClick={this.handleSaveCard}>Add Card</button>
@@ -111,14 +96,17 @@ class List extends React.Component {
 
 List.defaultProps = {
   addCard() {},
-  cards: [],
 };
 
 List.propTypes = {
-  cards: PropTypes.arrayOf(PropTypes.string),
   addCard: PropTypes.func,
+  cards: PropTypes.arrayOf(PropTypes.string).isRequired,
   name: PropTypes.string.isRequired,
   board: PropTypes.string.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(List);
+const mapDispathToProps = dispatch => (
+  { addCard: payload => dispatch(addCardAction(payload)) }
+);
+
+export default connect(null, mapDispathToProps)(List);
