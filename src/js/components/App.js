@@ -1,7 +1,16 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import Board from './Board';
+import {
+  HashRouter as Router,
+  Link,
+  Route,
+  Switch,
+} from 'react-router-dom';
+
 import store from '../redux/store';
+import HomePage from '../pages/homePage';
+import BoardPage from '../pages/boardPage';
+import NoMatchPage from '../pages/noMatchPage';
 
 export default () => (
   <Provider store={store}>
@@ -9,8 +18,14 @@ export default () => (
       <div id="header" className="container text-center text-light">
         <h2>Trello Clone</h2>
       </div>
-      <div id="content" className="container-fluid bg-primary">
-        <Board name="temporal" />
+      <div id="content" className="container-fluid bg-primary py-4">
+        <Router>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/board" component={BoardPage} />
+            <Route component={NoMatchPage} />
+          </Switch>
+        </Router>
       </div>
       <footer id="footer" className="container text-light">
         <div className="row justify-content-end">
