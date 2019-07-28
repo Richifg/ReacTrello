@@ -1,0 +1,17 @@
+.board-display {
+  height: 7rem;
+};
+
+.board-display-container {
+  width: 100%;
+}
+
+@include media-breakpoint-up(lg) {
+  .board-display {
+    width: 13rem;
+  }
+
+  .board-display-container {
+    width: 60rem;
+  }
+}
