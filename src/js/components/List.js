@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addCardAction } from '../redux/actions';
 import Card from './Card';
 import CardInput from './CardInput';
+import CardAddButton from './CardAddButton';
 
 class List extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class List extends React.Component {
       isAdding: false,
       newCard: null,
     };
-    this.handleInputCard = this.handleInputCard.bind(this);
+    this.handleAddCard = this.handleAddCard.bind(this);
     this.handleSaveCard = this.handleSaveCard.bind(this);
     this.handleCancelCard = this.handleCancelCard.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -23,14 +24,15 @@ class List extends React.Component {
     return nextProps !== this.props || nextState.isAdding !== isAdding;
   }
 
-  handleInputCard(e) {
-    if ((e.type === 'keypress' && e.key === 'Enter') || e.type === 'click') {
+  handleAddCard(e) {
+    console.log(e.key);
+    if (!e.key || e.key === 'Enter') {
       this.setState({ isAdding: true });
     }
   }
 
   handleSaveCard(e) {
-    if ((e.type === 'keypress' && e.key === 'Enter') || e.type === 'click') {
+    if (!e.key || e.key === 'Enter') {
       const { newCard } = this.state;
       if (newCard) {
         document.getElementById('card-input').value = null;
@@ -38,14 +40,14 @@ class List extends React.Component {
         addCard({ board, list, newCard });
         this.setState({ newCard: null });
       }
+      // avoid entering a newline with enter press
       e.preventDefault();
     }
   }
 
   handleCancelCard(e) {
-    if (e.relatedTarget && e.relatedTarget.id === 'add-card') {
+    if (e.relatedTarget && e.relatedTarget.id === 'add-card-btn') {
       document.getElementById('card-input').focus();
-      document.getElementById('add-card').click();
     } else {
       this.setState({ isAdding: false, newCard: null });
     }
@@ -72,24 +74,13 @@ class List extends React.Component {
             />
           )}
         </div>
-        { isAdding
-          ? (
-            <div className="p-2">
-              <button id="add-card" type="button" className="btn btn-success" onClick={this.handleSaveCard}>Add Card</button>
-              <button type="button" className="close" aria-label="close" onClick={this.handleCancelCard}>
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          )
-          : (
-            <div className="card-footer list-footer text-secondary p-2" role="button" tabIndex={0} onKeyPress={this.handleInputCard} onClick={this.handleInputCard}>
-              {cards.length
-                ? '+ Add another card'
-                : '+ Add a card'
-              }
-            </div>
-          )
-        }
+        <CardAddButton
+          isAdding={isAdding}
+          count={cards.length}
+          handleAdd={this.handleAddCard}
+          handleSave={this.handleSaveCard}
+          handleCancel={this.handleCancelCard}
+        />
       </div>
     );
   }
