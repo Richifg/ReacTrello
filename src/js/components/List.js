@@ -25,7 +25,6 @@ class List extends React.Component {
   }
 
   handleAddCard(e) {
-    console.log(e.key);
     if (!e.key || e.key === 'Enter') {
       this.setState({ isAdding: true });
     }
@@ -61,7 +60,7 @@ class List extends React.Component {
     const { name, cards } = this.props;
     const { isAdding } = this.state;
     return (
-      <div className="card list mb-4">
+      <div className="card list mb-4 text-dark">
         <h6 className="card-title mb-0 ml-3 mt-1">{name}</h6>
         <div className="card-body p-2">
           {cards.map(desc => <Card key={desc} description={desc} />)}

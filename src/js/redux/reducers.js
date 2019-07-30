@@ -2,6 +2,7 @@ import {
   ADD_LIST,
   ADD_CARD,
   CREATE_BOARD,
+  UPDATE_COLOR,
 } from './actions';
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
       },
     },
   },
+  color: 'blue',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -46,6 +48,9 @@ const rootReducer = (state = initialState, action) => {
       const { name, color } = action.payload;
       const newBoard = { [name]: { color, lists: {} } };
       return Object.assign({}, state, { boards: Object.assign({}, state.boards, newBoard) });
+    }
+    case UPDATE_COLOR: {
+      return Object.assign({}, state, { color: action.payload });
     }
     default: return state;
   }

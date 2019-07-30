@@ -1,27 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const BoardDisplay = ({ name, color, onClick }) => (
+import { updateColorAction } from '../redux/actions';
+
+const BoardDisplay = ({ name, color, updateColor }) => (
   <div className="col-lg-auto col-md-4 col-6">
     <a
       href={`#/board/${name}`}
       role="button"
-      className={`btn btn-block btn-primary mb-4 board-display bg-${color}`}
-      onClick={onClick}
+      className={`btn btn-block text-light mb-4 board-display bg-${color} bg-${color}-hover`}
+      onClick={() => updateColor(color)}
     >
       <p className="board-display-title">{name}</p>
     </a>
   </div>
 );
 
-BoardDisplay.defaultProps = {
-  onClick() {},
-};
 
 BoardDisplay.propTypes = {
   name: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
+  updateColor: PropTypes.func.isRequired,
 };
 
-export default BoardDisplay;
+const mapDispatchToProps = dispatch => (
+  { updateColor: payload => dispatch(updateColorAction(payload)) }
+);
+
+export default connect(null, mapDispatchToProps)(BoardDisplay);

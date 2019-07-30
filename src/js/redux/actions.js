@@ -7,6 +7,7 @@ export const REMOVE_LIST = 'REMOVE_LIST';
 export const CREATE_BOARD = 'ADD_BOARD';
 export const RENAME_BOARD = 'RENAME_BOARD';
 export const REMOVE_BOARD = 'DELETE_BOARD';
+export const UPDATE_COLOR = 'UPDATE_COLOR';
 
 export const addCardAction = payload => ({ type: ADD_CARD, payload });
 export const modifyCardAction = payload => ({ type: MODIFY_CARD, payload });
@@ -17,3 +18,4 @@ export const removeListAction = payload => ({ type: REMOVE_LIST, payload });
 export const createBoardAction = payload => ({ type: CREATE_BOARD, payload });
 export const renameBoardAction = payload => ({ type: RENAME_BOARD, payload });
 export const removeBoardAction = payload => ({ type: REMOVE_BOARD, payload });
+export const updateColorAction = payload => ({ type: UPDATE_COLOR, payload });

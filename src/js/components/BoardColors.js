@@ -8,7 +8,7 @@ const BoardColors = ({ onClick }) => (
     <div className="row">
       {
         colors.map(color => (
-          <div className="col-auto px-0 mx-1">
+          <div className="col-auto px-0 mx-1" key={color}>
             <label htmlFor={`option-${color}`}>
               <input
                 className="board-color-input"

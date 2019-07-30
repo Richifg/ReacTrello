@@ -49,7 +49,7 @@ class CreateModal extends React.Component {
   }
 
   render() {
-    const { name } = this.state;
+    const { name, color } = this.state;
     return (
       <div id="create-board-modal" className="modal fade" tabIndex="-1" role="dialog" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
@@ -57,7 +57,7 @@ class CreateModal extends React.Component {
             <div className="modal-body">
               <div className="row">
                 <div className="col-auto">
-                  <div className="card board-display-preview">
+                  <div className={`card board-display-preview bg-${color}`}>
                     <input
                       type="text"
                       className="form-control board-title-input"

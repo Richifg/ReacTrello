@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import ListInput from './ListInput';
 
 const ListAddButton = ({
@@ -9,6 +10,7 @@ const ListAddButton = ({
   handleChange,
   handleSave,
   handleCancel,
+  color,
 }) => {
   if (isAdding) {
     return (
@@ -38,7 +40,7 @@ const ListAddButton = ({
   return (
     <button
       type="button"
-      className="btn btn-dark text-left list-add"
+      className={`btn bg-${color} bg-${color}-hover  text-left text-light list-add`}
       onClick={handleAdd}
     >
       {count ? '+ Add another list' : '+ Add a list'}
@@ -53,6 +55,11 @@ ListAddButton.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleSave: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
+  color: PropTypes.string.isRequired,
 };
 
-export default ListAddButton;
+const mapStateToProps = state => (
+  { color: state.color }
+);
+
+export default connect(mapStateToProps)(ListAddButton);
