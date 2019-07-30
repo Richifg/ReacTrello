@@ -50,49 +50,57 @@ class Board extends React.Component {
 
   render() {
     const { lists, name } = this.props;
-    const { isAdding } = this.state;
-    const listNames = Object.keys(lists);
-    return (
-      <div className="d-flex flex-column">
-        <h3>{name}</h3>
-        <div className="row">
-          {
-            listNames.map(listName => (
-              <div className="col-auto" key={listName}>
-                <List board={name} name={listName} cards={lists[listName]} />
-              </div>
-            ))
-          }
-          <div className="col-auto" key="add">
-            <ListAddButton
-              isAdding={isAdding}
-              count={listNames.length}
-              handleAdd={this.handleAddList}
-              handleCancel={this.handleCancelList}
-              handleSave={this.handleSaveList}
-              handleChange={this.handleChange}
-            />
+    if (lists) {
+      const { isAdding } = this.state;
+      const listNames = Object.keys(lists);
+      return (
+        <div className="d-flex flex-column">
+          <h3>{name}</h3>
+          <div className="row">
+            {
+              listNames.map(listName => (
+                <div className="col-auto" key={listName}>
+                  <List board={name} name={listName} cards={lists[listName]} />
+                </div>
+              ))
+            }
+            <div className="col-auto" key="add">
+              <ListAddButton
+                isAdding={isAdding}
+                count={listNames.length}
+                handleAdd={this.handleAddList}
+                handleCancel={this.handleCancelList}
+                handleSave={this.handleSaveList}
+                handleChange={this.handleChange}
+              />
+            </div>
           </div>
         </div>
+      );
+    }
+    return (
+      <div className="d-flex flex-column text-center">
+        <h2 className="text-danger">Error</h2>
+        <h3>{`The requested board "${name}" does not exist...`}</h3>
       </div>
     );
   }
 }
 
 Board.defaultProps = {
-  lists: {},
   addList() {},
 };
 
 Board.propTypes = {
   name: PropTypes.string.isRequired,
-  lists: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)),
+  lists: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
   addList: PropTypes.func,
 };
 
-const mapStateToProps = (state, ownProps) => (
-  { lists: state.boards[ownProps.name] }
-);
+const mapStateToProps = (state, ownProps) => {
+  const board = state.boards[ownProps.name];
+  return ({ lists: board ? board.lists : null });
+};
 
 const mapDispatchToProps = dispatch => (
   { addList: payload => dispatch(addListAction(payload)) }
