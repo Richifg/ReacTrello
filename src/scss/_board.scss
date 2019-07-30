@@ -1,5 +1,34 @@
+$board-display-height: 7em;
+$board-display-width: 13rem;
+$board-color-size: 30px;
+$board-color-border-size: 1px;
+$board-color-options: (
+  "blue": $blue,
+  "orange": $orange,
+  "green": $green,
+  "red": #B04632,
+  "gray": #6F777B
+);
+
+
+// board background colors
+@each $name, $color in $board-color-options {
+  .bg-#{$name} {
+    background-color: #{$color};
+    border-color: #{$color};
+  }
+}
+
+// board displays seen on the home page
+.board-display-title {
+  font-weight: bold;
+  font-size: 1.2em;
+  vertical-align: text-top;
+  text-align: left;
+  height: 100%;
+}
 .board-display {
-  height: 7rem;
+  height: $board-display-height;  
 };
 
 .board-display-container {
@@ -8,10 +37,75 @@
 
 @include media-breakpoint-up(lg) {
   .board-display {
-    width: 13rem;
+    width: $board-display-width;
   }
 
   .board-display-container {
     width: 60rem;
+  }
+}
+
+
+// create board modal
+.board-title-input {
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  background-color: transparent;
+  &:focus {
+    color: white;
+    background-color: rgba(255,255,255,0.3);
+  }
+  &::placeholder {
+    color: white;
+  }
+}
+
+.board-display-preview {
+  width: 100%;
+  height: $board-display-height;
+  background-color: $primary;
+}
+
+.board-create-modal-bg {
+  background-color: transparent;
+  border: none;
+}
+
+
+// board color selection of the create modal
+
+@mixin darken-color-option() {
+  content: "";
+  position: absolute;
+  width: $board-color-size;
+  height: $board-color-size;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  top: -$board-color-border-size;
+  right: -$board-color-border-size;
+}
+
+.board-color-option {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  border-radius: 5px;
+  border: $board-color-border-size solid white;
+  width: $board-color-size;
+  height: $board-color-size;
+  position: relative;
+
+  &:hover::after{
+    @include darken-color-option();
+  }
+}
+
+.board-color-input {
+  display: none;
+
+  &:checked + .board-color-option::after {
+    @include darken-color-option();
   }
 }
