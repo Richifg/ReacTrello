@@ -16,10 +16,6 @@ $board-color-border-size: 1px;
 
 };
 
-.board-display-container {
-  width: 100%;
-}
-
 @include media-breakpoint-up(lg) {
   .board-display {
     width: $board-display-width;
