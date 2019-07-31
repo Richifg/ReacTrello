@@ -1,11 +1,11 @@
-$board-display-height: 7em;
-$board-display-width: 13rem;
+$board-display-height: 6em;
+$board-display-width: 12rem;
 $board-color-size: 30px;
 $board-color-border-size: 1px;
 
 // board section titles
 .board-section-title { 
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: bold;
   vertical-align: middle;
   color: #172b4d;
@@ -13,7 +13,7 @@ $board-color-border-size: 1px;
 
 // board displays seen on the home page
 .board-display-title {
-  font-size: 1.2em;
+  font-size: 1.1em;
   vertical-align: text-top;
   text-align: left;
   height: 100%;  

@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   boards: {
-    temporal: {
+    'Test Board with data': {
       color: 'blue',
       lists: {
         Monday: ['Tarea 1', 'Tarea 2'],
@@ -16,20 +16,16 @@ const initialState = {
         'I have no cards :(': [],
       },
     },
-    Red: {
+    'Red test': {
       color: 'red',
       lists: {},
     },
-    Orange: {
-      color: 'orange',
-      lists: {},
-    },
-    Green: {
-      color: 'green',
-      lists: {},
-    },
-    Gray: {
+    'Gray test': {
       color: 'gray',
+      lists: {},
+    },
+    'Green test': {
+      color: 'green',
       lists: {},
     },
   },

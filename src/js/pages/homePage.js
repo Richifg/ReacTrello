@@ -8,9 +8,7 @@ import { CreateButton, CreateModal } from '../components/BoardCreate';
 
 const HomePage = ({ boards, recent }) => (
   <div id="content" className="container-fluid py-4">
-    <BoardsSection title="Starred Boards" icon={['far', 'star']} key="starred">
-      {[<CreateButton key="starred" />]}
-    </BoardsSection>
+    <BoardsSection title="Starred Boards" icon={['far', 'star']} key="starred" />
     <BoardsSection title="Recently Viewed" icon={['far', 'clock']} key="recent">
       {recent.map(name => <BoardDisplay name={name} key={name} />)}
     </BoardsSection>

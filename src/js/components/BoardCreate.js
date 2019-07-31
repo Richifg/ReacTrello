@@ -6,12 +6,13 @@ import { createBoardAction } from '../redux/actions';
 import BoardColors from './BoardColors';
 
 const CreateButton = () => (
-  <div className="col-lg-auto col-md-4 col-6">
+  <div className="col-lg-auto col-md-4 col-6 my-2 px-2">
     <button
       type="button"
-      className="btn btn-block btn-outline-info mb-4 board-display"
+      className="btn btn-block btn-outline-info board-display"
       data-toggle="modal"
       data-target="#create-board-modal"
+      onClick={() => {}}
     >
       Create new board
     </button>
@@ -39,7 +40,7 @@ class CreateModal extends React.Component {
     if (name) {
       const { createBoard } = this.props;
       createBoard({ name, color });
-      this.setState({ name: '', color: 'blue' });
+      this.setState({ name: '' });
       document.getElementById('modal-close').click();
     }
   }
@@ -59,6 +60,7 @@ class CreateModal extends React.Component {
                 <div className="col-auto">
                   <div className={`card board-display-preview bg-${color}`}>
                     <input
+                      id="new-board-title-input"
                       type="text"
                       className="form-control board-title-input"
                       placeholder="Enter board title"

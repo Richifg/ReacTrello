@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addListAction } from '../redux/actions';
+import { addListAction, addRecentAction } from '../redux/actions';
 import List from './List';
 import ListAddButton from './ListAddButton';
 
@@ -16,6 +16,11 @@ class Board extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSaveList = this.handleSaveList.bind(this);
     this.handleCancelList = this.handleCancelList.bind(this);
+  }
+
+  componentDidMount() {
+    const { addRecent, name } = this.props;
+    addRecent({ name });
   }
 
   handleAddList() {
@@ -87,14 +92,11 @@ class Board extends React.Component {
   }
 }
 
-Board.defaultProps = {
-  addList() {},
-};
-
 Board.propTypes = {
   name: PropTypes.string.isRequired,
   lists: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
-  addList: PropTypes.func,
+  addList: PropTypes.func.isRequired,
+  addRecent: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -103,7 +105,10 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => (
-  { addList: payload => dispatch(addListAction(payload)) }
+  {
+    addList: payload => dispatch(addListAction(payload)),
+    addRecent: payload => dispatch(addRecentAction(payload)),
+  }
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

@@ -11,6 +11,7 @@ const BoardColors = ({ onClick }) => (
           <div className="col-auto px-0 mx-1" key={color}>
             <label htmlFor={`option-${color}`}>
               <input
+                defaultChecked={color === 'blue' ? true : null}
                 className="board-color-input"
                 type="radio"
                 id={`option-${color}`}
