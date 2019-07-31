@@ -3,6 +3,14 @@ $board-display-width: 13rem;
 $board-color-size: 30px;
 $board-color-border-size: 1px;
 
+// board section titles
+.board-section-title { 
+  font-size: 1.2em;
+  font-weight: bold;
+  vertical-align: middle;
+  color: #172b4d;
+}
+
 // board displays seen on the home page
 .board-display-title {
   font-size: 1.2em;
@@ -13,7 +21,6 @@ $board-color-border-size: 1px;
 .board-display {
   height: $board-display-height;
   font-weight: bold;
-
 };
 
 @include media-breakpoint-up(lg) {
@@ -54,7 +61,7 @@ $board-color-border-size: 1px;
 }
 
 
-// board color selection of the create modal
+// board color selection
 
 @mixin darken-color-option() {
   content: "";

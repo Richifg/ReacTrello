@@ -3,33 +3,34 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import BoardDisplay from '../components/BoardDisplay';
+import BoardsSection from '../components/BoardsSection';
 import { CreateButton, CreateModal } from '../components/BoardCreate';
 
-const HomePage = ({ boards, colors }) => (
+const HomePage = ({ boards, recent }) => (
   <div id="content" className="container-fluid py-4">
-    <div className="row mx-lg-auto mx-0 board-display-container">
-      {boards.map((name, index) => (
-        <BoardDisplay name={name} color={colors[index]} key={name} />
-      ))
-      }
+    <BoardsSection title="Starred Boards" icon={['far', 'star']} key="starred">
+      {[<CreateButton key="starred" />]}
+    </BoardsSection>
+    <BoardsSection title="Recently Viewed" icon={['far', 'clock']} key="recent">
+      {recent.map(name => <BoardDisplay name={name} key={name} />)}
+    </BoardsSection>
+    <BoardsSection title="Personal Boards" icon={['far', 'user']} key="personal">
+      {boards.map(name => <BoardDisplay name={name} key={name} />)}
       <CreateButton />
-      <CreateModal />
-    </div>
+    </BoardsSection>
+    <CreateModal />
   </div>
 );
 
 HomePage.propTypes = {
   boards: PropTypes.arrayOf(PropTypes.string).isRequired,
-  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  recent: PropTypes.arrayOf(PropTypes.string).isRequired,
+
 };
 
-const mapStateToProps = (state) => {
-  const boardNames = Object.keys(state.boards);
-  const boardColors = boardNames.map(name => state.boards[name].color);
-  return ({
-    boards: boardNames,
-    colors: boardColors,
-  });
-};
+const mapStateToProps = state => ({
+  boards: Object.keys(state.boards),
+  recent: state.recent,
+});
 
 export default connect(mapStateToProps)(HomePage);

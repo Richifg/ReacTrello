@@ -3,6 +3,7 @@ import {
   ADD_CARD,
   CREATE_BOARD,
   UPDATE_COLOR,
+  ADD_RECENT,
 } from './actions';
 
 const initialState = {
@@ -31,12 +32,9 @@ const initialState = {
       color: 'gray',
       lists: {},
     },
-    Extra: {
-      color: 'blue',
-      lists: {},
-    },
   },
   color: 'blue',
+  recent: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -71,6 +69,14 @@ const rootReducer = (state = initialState, action) => {
     }
     case UPDATE_COLOR: {
       return Object.assign({}, state, { color: action.payload.color });
+    }
+    case ADD_RECENT: {
+      const { name } = action.payload;
+      let newRecent = state.recent.slice();
+      if (newRecent.includes(name)) newRecent = newRecent.filter(board => board !== name);
+      newRecent.unshift(name);
+      if (newRecent.length > 4) newRecent.pop();
+      return Object.assign({}, state, { recent: newRecent });
     }
     default: return state;
   }

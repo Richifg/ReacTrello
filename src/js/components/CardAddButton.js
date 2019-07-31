@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CardAddButton = ({
   isAdding,
@@ -20,13 +21,14 @@ const CardAddButton = ({
   }
   return (
     <div
-      className="card-footer list-footer text-secondary p-2"
+      className="card-footer list-footer text-secondary p-2 border-top-0"
       role="button"
       tabIndex={0}
       onKeyPress={handleAdd}
       onClick={handleAdd}
     >
-      {count ? '+ Add another card' : '+ Add a card'}
+      <FontAwesomeIcon icon="plus" className="small" />
+      {count ? ' Add another card' : ' Add a card'}
     </div>
   );
 };

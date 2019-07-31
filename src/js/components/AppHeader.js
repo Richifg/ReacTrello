@@ -23,6 +23,7 @@ const AppHeader = ({ color, updateColor }) => (
             className="btn header text-translucid text-translucid-hover d-flex p-1"
             href="#/"
             onClick={() => updateColor()}
+            style={{ fontFamily: "'Pacifico', cursive" }}
           >
             <FontAwesomeIcon icon="clipboard-list" />
             <h1 className="header ml-1 my-0">Crello</h1>
