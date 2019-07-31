@@ -13,7 +13,7 @@ const CreateButton = () => (
       data-toggle="modal"
       data-target="#create-board-modal"
     >
-      Create a new board
+      Create new board
     </button>
   </div>
 );

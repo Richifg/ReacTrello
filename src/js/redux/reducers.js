@@ -15,6 +15,26 @@ const initialState = {
         'I have no cards :(': [],
       },
     },
+    Red: {
+      color: 'red',
+      lists: {},
+    },
+    Orange: {
+      color: 'orange',
+      lists: {},
+    },
+    Green: {
+      color: 'green',
+      lists: {},
+    },
+    Gray: {
+      color: 'gray',
+      lists: {},
+    },
+    Extra: {
+      color: 'blue',
+      lists: {},
+    },
   },
   color: 'blue',
 };
@@ -50,7 +70,7 @@ const rootReducer = (state = initialState, action) => {
       return Object.assign({}, state, { boards: Object.assign({}, state.boards, newBoard) });
     }
     case UPDATE_COLOR: {
-      return Object.assign({}, state, { color: action.payload });
+      return Object.assign({}, state, { color: action.payload.color });
     }
     default: return state;
   }

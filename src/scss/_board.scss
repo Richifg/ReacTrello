@@ -2,33 +2,6 @@ $board-display-height: 7em;
 $board-display-width: 13rem;
 $board-color-size: 30px;
 $board-color-border-size: 1px;
-$board-color-options: (
-  blue: (light: #0079BF, normal: #0067A3, dark: #005B8F),
-  orange: (light: #D29034, normal: rgb(180, 117, 29), dark: rgb(121, 78, 17)),
-  green: (light: #519839, normal: #35851a, dark: #255e13),
-  red: (light: #B04632, normal: #963C2B, dark: #863526),
-  gray: (light: #6F777B, normal: rgb(83, 87, 88), dark: rgb(59, 62, 63)),
-);
-
-
-// board background colors
-@each $name, $color in $board-color-options {
-  $light: map-get($color, light);
-  $normal: map-get($color, normal);
-  $dark: map-get($color, dark);
-  .bg-light-#{$name} {
-    background-color: #{$light};
-    border-color: #{$light};
-  }
-  .bg-#{$name}, .bg-light-#{$name}-hover:hover {
-    background-color: #{$normal};
-    border-color: #{$normal};
-  }
-  .bg-dark-#{$name}, .bg-#{$name}-hover:hover {
-    background-color: #{$dark};
-    border-color: #{$dark};
-  }
-}
 
 // board displays seen on the home page
 .board-display-title {

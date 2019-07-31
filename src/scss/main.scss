@@ -1,6 +1,8 @@
 @import "node_modules/bootstrap/scss/bootstrap";
-@import "list";
 @import "board";
+@import "colors";
+@import "list";
+
 
 body, 
 html,
@@ -14,5 +16,5 @@ html,
 }
 
 .header {
-  font-size: 1.8em;
+  font-size: 1.6rem;
 }

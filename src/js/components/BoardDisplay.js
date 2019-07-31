@@ -10,7 +10,7 @@ const BoardDisplay = ({ name, color, updateColor }) => (
       href={`#/board/${name}`}
       role="button"
       className={`btn btn-block text-light mb-4 board-display bg-${color} bg-${color}-hover`}
-      onClick={() => updateColor(color)}
+      onClick={() => updateColor({ color })}
     >
       <p className="board-display-title">{name}</p>
     </a>
