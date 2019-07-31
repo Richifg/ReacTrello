@@ -21,7 +21,7 @@ const CardAddButton = ({
   }
   return (
     <div
-      className="card-footer list-footer text-secondary p-2 border-top-0"
+      className="p-2 list-footer text-secondary border-top-0"
       role="button"
       tabIndex={0}
       onKeyPress={handleAdd}

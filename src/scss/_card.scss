@@ -1,0 +1,16 @@
+.card-display {
+  box-shadow: 0 1px 0 darkgray;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ecf1f3;
+    
+    & .card-edit-button {
+      opacity: 1;
+    }
+  }
+}
+
+.card-edit-button {
+  opacity: 0;
+}

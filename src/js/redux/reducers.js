@@ -4,6 +4,7 @@ import {
   CREATE_BOARD,
   UPDATE_COLOR,
   ADD_RECENT,
+  MODIFY_CARD,
 } from './actions';
 
 const initialState = {
@@ -35,10 +36,15 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case MODIFY_CARD:
     case ADD_CARD: {
-      const { board, list, newCard } = action.payload;
-      const updatedList = state.boards[board].lists[list].slice();
-      updatedList.push(newCard);
+      //
+      const {
+        board, list, card, index,
+      } = action.payload;
+      let updatedList = state.boards[board].lists[list].slice();
+      if (index !== undefined) updatedList = updatedList.map((c, i) => (i === index ? card : c));
+      else updatedList.push(card);
       return Object.assign({}, state, {
         boards: Object.assign({}, state.boards, {
           [board]: Object.assign({}, state.boards[board], {

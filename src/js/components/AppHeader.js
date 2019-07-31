@@ -10,17 +10,17 @@ const AppHeader = ({ color, updateColor }) => (
     <div className="row mx-0">
       <div className="col-4 px-0">
         <a
-          className="btn text-light header bg-translucid bg-translucid-hover p-1"
+          className="btn header bg-trans bg-trans-hover p-1"
           href="#/"
           onClick={() => updateColor()}
         >
-          <FontAwesomeIcon icon="home" />
+          <FontAwesomeIcon className="text-light" icon="home" />
         </a>
       </div>
       <div className="col-4">
         <div className="row justify-content-center">
           <a
-            className="btn header text-translucid text-translucid-hover d-flex p-1"
+            className="btn header text-trans text-trans-hover d-flex p-1"
             href="#/"
             onClick={() => updateColor()}
             style={{ fontFamily: "'Pacifico', cursive" }}

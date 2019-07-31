@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addCardAction } from '../redux/actions';
+import { addCardAction, modifyCardAction } from '../redux/actions';
 import Card from './Card';
 import CardInput from './CardInput';
 import CardAddButton from './CardAddButton';
@@ -10,18 +10,24 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      editIndex: null,
       isAdding: false,
-      newCard: null,
+      cardText: null,
     };
     this.handleAddCard = this.handleAddCard.bind(this);
     this.handleSaveCard = this.handleSaveCard.bind(this);
     this.handleCancelCard = this.handleCancelCard.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleStartEdit = this.handleStartEdit.bind(this);
+    this.handleSaveEdit = this.handleSaveEdit.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const { isAdding } = this.state;
-    return nextProps !== this.props || nextState.isAdding !== isAdding;
+    const { isAdding, editIndex } = this.state;
+    // trying to avoid re-renders due to newCard changes when typing on input
+    return nextProps !== this.props
+    || nextState.isAdding !== isAdding
+    || nextState.editIndex !== editIndex;
   }
 
   handleAddCard(e) {
@@ -32,12 +38,12 @@ class List extends React.Component {
 
   handleSaveCard(e) {
     if (!e.key || e.key === 'Enter') {
-      const { newCard } = this.state;
-      if (newCard) {
+      const { cardText } = this.state;
+      if (cardText) {
         document.getElementById('card-input').value = null;
         const { addCard, name: list, board } = this.props;
-        addCard({ board, list, newCard });
-        this.setState({ newCard: null });
+        addCard({ board, list, card: cardText });
+        this.setState({ cardText: null });
       }
       // avoid entering a newline with enter press
       e.preventDefault();
@@ -48,22 +54,54 @@ class List extends React.Component {
     if (e.relatedTarget && e.relatedTarget.id === 'add-card-btn') {
       document.getElementById('card-input').focus();
     } else {
-      this.setState({ isAdding: false, newCard: null });
+      this.setState({ isAdding: false, cardText: null, editIndex: null });
     }
   }
 
   handleChange(e) {
-    this.setState({ newCard: e.target.value });
+    this.setState({ cardText: e.target.value });
+  }
+
+  handleStartEdit(index) {
+    this.setState({ editIndex: index });
+  }
+
+  handleSaveEdit(e) {
+    if (!e.key || e.key === 'Enter') {
+      const { cardText, editIndex } = this.state;
+      if (cardText) {
+        const { modifyCard, name: list, board } = this.props;
+        modifyCard({
+          board, list, card: cardText, index: editIndex,
+        });
+        this.setState({ cardText: null, editIndex: null });
+      }
+      e.preventDefault();
+    }
   }
 
   render() {
     const { name, cards } = this.props;
-    const { isAdding } = this.state;
+    const { isAdding, editIndex } = this.state;
     return (
       <div className="card list mb-4 text-dark">
-        <h6 className="card-title mb-0 ml-3 mt-1">{name}</h6>
-        <div className="card-body p-2">
-          {cards.map(desc => <Card key={desc} description={desc} />)}
+        <h6 className="card-title pl-3 mb-0 py-2">{name}</h6>
+        <div className="card-body px-2 py-0">
+          {cards.map((desc, index) => {
+            if (editIndex === index) {
+              return (
+                <CardInput
+                  id="card-input"
+                  onBlur={this.handleCancelCard}
+                  onChange={this.handleChange}
+                  onKeyPress={this.handleSaveEdit}
+                />
+              );
+            }
+            return (
+              <Card key={desc} description={desc} onClick={() => this.handleStartEdit(index)} />
+            );
+          })}
           { isAdding && (
             <CardInput
               id="card-input"
@@ -85,19 +123,19 @@ class List extends React.Component {
   }
 }
 
-List.defaultProps = {
-  addCard() {},
-};
-
 List.propTypes = {
-  addCard: PropTypes.func,
+  addCard: PropTypes.func.isRequired,
+  modifyCard: PropTypes.func.isRequired,
   cards: PropTypes.arrayOf(PropTypes.string).isRequired,
   name: PropTypes.string.isRequired,
   board: PropTypes.string.isRequired,
 };
 
 const mapDispathToProps = dispatch => (
-  { addCard: payload => dispatch(addCardAction(payload)) }
+  {
+    addCard: payload => dispatch(addCardAction(payload)),
+    modifyCard: payload => dispatch(modifyCardAction(payload)),
+  }
 );
 
 export default connect(null, mapDispathToProps)(List);

@@ -1,9 +1,12 @@
 // colors and shades
 
-$translucid-20: rgba(255,255,255,0.2);
-$translucid-40: rgba(255,255,255,0.4);
-$translucid-60: rgba(255,255,255,0.6);
-$translucid-80: rgba(255,255,255,0.8);
+$transparent-white-20: rgba(255,255,255,0.2);
+$transparent-white-40: rgba(255,255,255,0.4);
+$transparent-white-60: rgba(255,255,255,0.6);
+$transparent-white-80: rgba(255,255,255,0.8);
+
+$transparent-black-20: rgba(0,0,0,0.2);
+$transparent-black-40: rgba(0,0,0,0.4);
 
 $color-shades: (
   blue: (light: #0079BF, normal: #0067A3, dark: #005B8F),
@@ -34,26 +37,25 @@ $color-shades: (
   }
 }
 
-.bg-translucid {
-  background-color: $translucid-40;
+.bg-trans {
+  background-color: $transparent-white-40;
 }
 
-.bg-translucid-hover:hover {
-  background-color: $translucid-20;
+.bg-trans-hover:hover {
+  background-color: $transparent-white-20;
 }
 
+
+.bg-trans-dark-hover:hover {
+  background-color: $transparent-black-20;
+}
 
 // font colors
 
-.text-translucid { 
-  color: $translucid-60;
+.text-trans { 
+  color: $transparent-white-60;
 }
 
-.text-translucid-hover:hover { 
-  color: $translucid-80;
-}
-
-// shadows
-.shadow-b { 
-  box-shadow: 0 1px 0 darkgray
+.text-trans-hover:hover { 
+  color: $transparent-white-80;
 }

@@ -26,8 +26,8 @@ const AppBody = ({ color }) => (
       </Switch>
     </Router>
     <footer id="footer" className={`container-fluid bg-${color}`}>
-      <div className="row justify-content-end">
-        <h4>Footer</h4>
+      <div className="row justify-content-end mr-3">
+        <h4>Lorem ipsum footer</h4>
       </div>
     </footer>
   </div>
