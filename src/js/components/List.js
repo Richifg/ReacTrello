@@ -5,6 +5,7 @@ import { addCardAction, modifyCardAction } from '../redux/actions';
 import Card from './Card';
 import CardInput from './CardInput';
 import CardAddButton from './CardAddButton';
+import CardEditSection from './CardEditSection';
 
 class List extends React.Component {
   constructor(props) {
@@ -62,8 +63,8 @@ class List extends React.Component {
     this.setState({ cardText: e.target.value });
   }
 
-  handleStartEdit(index) {
-    this.setState({ editIndex: index });
+  handleStartEdit(index, desc) {
+    this.setState({ editIndex: index, cardText: desc });
   }
 
   handleSaveEdit(e) {
@@ -90,16 +91,17 @@ class List extends React.Component {
           {cards.map((desc, index) => {
             if (editIndex === index) {
               return (
-                <CardInput
-                  id="card-input"
-                  onBlur={this.handleCancelCard}
-                  onChange={this.handleChange}
-                  onKeyPress={this.handleSaveEdit}
+                <CardEditSection
+                  handleCancel={this.handleCancelCard}
+                  handleChange={this.handleChange}
+                  handleSave={this.handleSaveEdit}
+                  handleDelete={this.handleCancelCard}
+                  description={desc}
                 />
               );
             }
             return (
-              <Card key={desc} description={desc} onClick={() => this.handleStartEdit(index)} />
+              <Card key={desc} description={desc} onClick={() => this.handleStartEdit(index, desc)} />
             );
           })}
           { isAdding && (
