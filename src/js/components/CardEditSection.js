@@ -26,7 +26,7 @@ const EditSection = ({
     <div className="row mx-0 justify-content-between">
       <div className="col-auto p-0">
         <button type="button" id="add-card-btn" className="btn btn-success mr-2" onClick={handleSave}>Save</button>
-        <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
+        <button type="button" id="delete-card-btn" className="btn btn-danger" onClick={handleDelete}>Delete</button>
       </div>
       <div className="col-auto px-0 pt-2">
         <button type="button" className="close" onClick={handleCancel}>

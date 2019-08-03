@@ -3,7 +3,7 @@ export const updateObj = (obj, keyValue) => (
 );
 
 export const deleteFromObj = (obj, key) => {
-  const newObj = obj.assign({}, obj);
+  const newObj = Object.assign({}, obj);
   delete newObj[key];
   return newObj;
 };
