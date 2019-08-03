@@ -1,2 +1,6 @@
-# trello-clone
-A simple trello clone built with react and bootstrap.
+# Trello-clone
+A simple Trello clone built with react and bootstrap.
+
+# Demo
+
+Lived demo available here: https://trello-clone.richifg.now.sh
