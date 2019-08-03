@@ -4,6 +4,7 @@ import {
   CREATE_CARD,
   MODIFY_CARD,
   DELETE_CARD,
+  DELETE_LIST,
 } from '../actions';
 
 const initState = {
@@ -33,11 +34,19 @@ function modifyCard(state, action) {
   return updateObj(state, { [cardId]: updatedCard });
 }
 
+function deleteList(state, action) {
+  const { cardIds } = action.payload;
+  const newState = Object.keys(state).filter(id => !cardIds.includes(id))
+    .reduce((obj, id) => updateObj(obj, { [id]: state[id] }), {});
+  return newState;
+}
+
 const cardsReducer = (state = initState, action) => {
   switch (action.type) {
     case CREATE_CARD: return createCard(state, action);
     case MODIFY_CARD: return modifyCard(state, action);
     case DELETE_CARD: return deleteFromObj(state, action.payload.cardId);
+    case DELETE_LIST: return deleteList(state, action);
     default: return state;
   }
 };

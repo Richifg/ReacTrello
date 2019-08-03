@@ -1,6 +1,7 @@
 // solid icons
 import {
   faHome,
+  faTrash,
   faPlus,
   faTimes,
   faPen,
@@ -17,6 +18,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 
 library.add(
   faHome,
+  faTrash,
   faPlus,
   faTimes,
   faStar,

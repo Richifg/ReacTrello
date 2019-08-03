@@ -3,6 +3,10 @@ $list-width: 18rem;
 .list {
   background-color:#e1e3e6;
   width: $list-width;
+
+  &:hover .delete-list-btn {
+    opacity: 1;
+  }
 }
 
 .list-footer {
@@ -16,4 +20,8 @@ $list-width: 18rem;
 
 .list-add {
   width: $list-width;
+}
+
+.delete-list-btn {
+  opacity: 0;
 }

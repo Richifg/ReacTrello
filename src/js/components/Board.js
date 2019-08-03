@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addRecentAction, createListAction } from '../redux/actions';
+import { addRecentAction, createListAction, deleteListAction } from '../redux/actions';
 import List from './List';
 import ListAddButton from './ListAddButton';
 import { getNewId } from '../utils';
@@ -17,6 +17,7 @@ class Board extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSaveList = this.handleSaveList.bind(this);
     this.handleCancelList = this.handleCancelList.bind(this);
+    this.handleDeleteList = this.handleDeleteList.bind(this);
   }
 
   componentDidMount() {
@@ -55,6 +56,11 @@ class Board extends React.Component {
     }
   }
 
+  handleDeleteList(listId, cards) {
+    const { deleteList, boardId } = this.props;
+    deleteList({ listId, boardId, cardIds: cards });
+  }
+
   render() {
     const { lists, name } = this.props;
     if (lists) {
@@ -66,7 +72,7 @@ class Board extends React.Component {
             {
               lists.map(listId => (
                 <div className="col-auto" key={listId}>
-                  <List listId={listId} />
+                  <List listId={listId} handleDeleteList={this.handleDeleteList} />
                 </div>
               ))
             }
@@ -98,6 +104,7 @@ Board.propTypes = {
   name: PropTypes.string.isRequired,
   lists: PropTypes.arrayOf(PropTypes.string).isRequired,
   createList: PropTypes.func.isRequired,
+  deleteList: PropTypes.func.isRequired,
   addRecent: PropTypes.func.isRequired,
 };
 
@@ -109,6 +116,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => (
   {
     createList: payload => dispatch(createListAction(payload)),
+    deleteList: payload => dispatch(deleteListAction(payload)),
     addRecent: payload => dispatch(addRecentAction(payload)),
   }
 );

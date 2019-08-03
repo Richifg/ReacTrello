@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createCardAction, modifyCardAction, deleteCardAction } from '../redux/actions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import {
+  createCardAction,
+  modifyCardAction,
+  deleteCardAction,
+} from '../redux/actions';
+
 import Card from './Card';
 import CardInput from './CardInput';
 import CardAddButton from './CardAddButton';
@@ -89,11 +96,27 @@ class List extends React.Component {
   }
 
   render() {
-    const { name, cards } = this.props;
+    const {
+      name,
+      cards,
+      listId,
+      handleDeleteList,
+    } = this.props;
     const { isAdding, editId } = this.state;
     return (
       <div className="card list mb-4 text-dark">
-        <h6 className="card-title pl-3 mb-0 py-2">{name}</h6>
+        <div className="card-title container px-0">
+          <div className="row mx-0">
+            <h6 className="pt-2 ml-3 mb-0">{name}</h6>
+            <button
+              type="button"
+              onClick={() => handleDeleteList(listId, cards)}
+              className="btn bg-trans-dark-hover delete-list-btn px-2 ml-auto"
+            >
+              <FontAwesomeIcon className="text-secondary" icon="trash" />
+            </button>
+          </div>
+        </div>
         <div className="card-body px-2 py-0">
           {cards.map((cardId) => {
             if (cardId === editId) {
@@ -137,6 +160,7 @@ List.propTypes = {
   listId: PropTypes.string.isRequired,
   cards: PropTypes.arrayOf(PropTypes.string).isRequired,
   name: PropTypes.string.isRequired,
+  handleDeleteList: PropTypes.func.isRequired,
   createCard: PropTypes.func.isRequired,
   modifyCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
