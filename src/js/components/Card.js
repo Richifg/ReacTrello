@@ -28,8 +28,10 @@ Card.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  description: state.cards[ownProps.cardId].description,
-});
+const mapStateToProps = (state, ownProps) => {
+  const card = state.cards[ownProps.cardId];
+  const description = card ? card.description : '';
+  return ({ description });
+};
 
 export default connect(mapStateToProps)(Card);
