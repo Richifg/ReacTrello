@@ -4,12 +4,10 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
-  addRecentAction,
   createListAction,
   deleteListAction,
   deleteBoardAction,
   modifyBoardAction,
-  removeRecentAction,
 } from '../redux/actions';
 
 import List from './List';
@@ -34,8 +32,8 @@ class Board extends React.Component {
   }
 
   componentDidMount() {
-    const { addRecent, boardId } = this.props;
-    addRecent({ boardId });
+    const { boardId, modifyBoard } = this.props;
+    modifyBoard({ boardId, newValues: { accessed: new Date() } });
   }
 
   handleAddList() {
@@ -89,9 +87,7 @@ class Board extends React.Component {
       starred,
       boardId,
       modifyBoard,
-      removeRecent,
     } = this.props;
-    if (!starred) removeRecent({ boardId });
     modifyBoard({ boardId, newValues: { starred: !starred } });
   }
 
@@ -155,10 +151,8 @@ Board.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.string).isRequired,
   createList: PropTypes.func.isRequired,
   deleteList: PropTypes.func.isRequired,
-  addRecent: PropTypes.func.isRequired,
   deleteBoard: PropTypes.func.isRequired,
   modifyBoard: PropTypes.func.isRequired,
-  removeRecent: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -173,10 +167,8 @@ const mapDispatchToProps = dispatch => (
   {
     createList: payload => dispatch(createListAction(payload)),
     deleteList: payload => dispatch(deleteListAction(payload)),
-    addRecent: payload => dispatch(addRecentAction(payload)),
     deleteBoard: payload => dispatch(deleteBoardAction(payload)),
     modifyBoard: payload => dispatch(modifyBoardAction(payload)),
-    removeRecent: payload => dispatch(removeRecentAction(payload)),
   }
 );
 

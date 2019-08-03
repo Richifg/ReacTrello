@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { updateColorAction, modifyBoardAction, removeRecentAction } from '../redux/actions';
+import { updateColorAction, modifyBoardAction } from '../redux/actions';
 
 const BoardDisplay = ({
   boardId,
@@ -12,7 +12,6 @@ const BoardDisplay = ({
   starred,
   updateColor,
   modifyBoard,
-  removeRecent,
 }) => (
   <div className="col-lg-auto col-md-4 col-6 my-2">
     <a
@@ -30,7 +29,6 @@ const BoardDisplay = ({
             type="button"
             className={`btn p-0 ml-auto board-display-star ${starred ? 'star-yellow' : 'star-white'}`}
             onClick={(e) => {
-              if (!starred) removeRecent({ boardId });
               modifyBoard({ boardId, newValues: { starred: !starred } });
               e.stopPropagation();
             }}
@@ -51,7 +49,6 @@ BoardDisplay.propTypes = {
   starred: PropTypes.bool.isRequired,
   updateColor: PropTypes.func.isRequired,
   modifyBoard: PropTypes.func.isRequired,
-  removeRecent: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -63,7 +60,6 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   updateColor: payload => dispatch(updateColorAction(payload)),
   modifyBoard: payload => dispatch(modifyBoardAction(payload)),
-  removeRecent: payload => dispatch(removeRecentAction(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoardDisplay);

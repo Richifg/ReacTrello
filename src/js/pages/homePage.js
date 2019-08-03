@@ -26,21 +26,22 @@ const HomePage = ({ boards, recent, starred }) => (
 );
 
 HomePage.defaultProps = {
-  starred: [],
+  recent: [],
 };
 
 HomePage.propTypes = {
   boards: PropTypes.arrayOf(PropTypes.string).isRequired,
-  recent: PropTypes.arrayOf(PropTypes.string).isRequired,
-  starred: PropTypes.arrayOf(PropTypes.string),
+  recent: PropTypes.arrayOf(PropTypes.string),
+  starred: PropTypes.arrayOf(PropTypes.string).isRequired,
 
 };
 
-// #DEBUG
 const mapStateToProps = (state) => {
   const boards = Object.keys(state.boards);
-  const { recent } = state.misc;
   const starred = boards.filter(id => state.boards[id].starred);
+  const recent = boards.filter(id => !starred.includes(id) && state.boards[id].accessed)
+    .sort((a, b) => state.boards[b].accessed - state.boards[a].accessed)
+    .slice(0, 4);
   return ({ boards, recent, starred });
 };
 

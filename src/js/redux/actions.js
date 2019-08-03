@@ -32,9 +32,5 @@ export const deleteCardAction = payload => ({ type: DELETE_CARD, payload });
 // misc actions
 
 export const UPDATE_COLOR = 'UPDATE_COLOR';
-export const ADD_RECENT = 'ADD_RECENT';
-export const REMOVE_RECENT = 'REMOVE_RECENT';
 
 export const updateColorAction = payload => ({ type: UPDATE_COLOR, payload });
-export const addRecentAction = payload => ({ type: ADD_RECENT, payload });
-export const removeRecentAction = payload => ({ type: REMOVE_RECENT, payload });
