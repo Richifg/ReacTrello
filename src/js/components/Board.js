@@ -8,6 +8,7 @@ import {
   deleteListAction,
   deleteBoardAction,
   modifyBoardAction,
+  updateColorAction,
 } from '../redux/actions';
 
 import List from './List';
@@ -75,10 +76,12 @@ class Board extends React.Component {
   handleDeleteBoard() {
     const {
       deleteBoard,
+      updateColor,
       boardId,
       cards: cardIds,
       lists: listIds,
     } = this.props;
+    updateColor();
     deleteBoard({ boardId, cardIds, listIds });
   }
 
@@ -153,6 +156,7 @@ Board.propTypes = {
   deleteList: PropTypes.func.isRequired,
   deleteBoard: PropTypes.func.isRequired,
   modifyBoard: PropTypes.func.isRequired,
+  updateColor: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -169,6 +173,7 @@ const mapDispatchToProps = dispatch => (
     deleteList: payload => dispatch(deleteListAction(payload)),
     deleteBoard: payload => dispatch(deleteBoardAction(payload)),
     modifyBoard: payload => dispatch(modifyBoardAction(payload)),
+    updateColor: () => dispatch(updateColorAction({ color: 'blue' })),
   }
 );
 
