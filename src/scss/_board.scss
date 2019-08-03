@@ -3,7 +3,8 @@ $board-display-width: 12rem;
 $board-color-size: 30px;
 $board-color-border-size: 1px;
 
-// board section titles
+// home page board styles
+
 .board-section-title { 
   font-size: 1.1em;
   font-weight: bold;
@@ -11,7 +12,6 @@ $board-color-border-size: 1px;
   color: #172b4d;
 }
 
-// board displays seen on the home page
 .board-display-title {
   font-size: 1.1em;
   vertical-align: text-top;
@@ -32,7 +32,6 @@ $board-color-border-size: 1px;
     width: 60rem;
   }
 }
-
 
 // create board modal
 .board-title-input {
@@ -94,5 +93,22 @@ $board-color-border-size: 1px;
 
   &:checked + .board-color-option::after {
     @include darken-color-option();
+  }
+}
+
+// board page styles
+
+.board-header-title { 
+  font-size: 1.3em;
+  color: white;
+  margin-bottom: 0;
+}
+
+.board-header-icon {
+  font-size: 1.1em;
+  color: white;
+
+  &:hover {
+    color: white;
   }
 }

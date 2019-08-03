@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { addRecentAction, createListAction, deleteListAction } from '../redux/actions';
 import List from './List';
 import ListAddButton from './ListAddButton';
 import { getNewId } from '../utils';
+
 
 class Board extends React.Component {
   constructor(props) {
@@ -63,37 +66,43 @@ class Board extends React.Component {
 
   render() {
     const { lists, name } = this.props;
-    if (lists) {
-      const { isAdding } = this.state;
-      return (
-        <div className="d-flex flex-column">
-          <h3>{name}</h3>
-          <div className="row">
-            {
-              lists.map(listId => (
-                <div className="col-auto" key={listId}>
-                  <List listId={listId} handleDeleteList={this.handleDeleteList} />
-                </div>
-              ))
-            }
-            <div className="col-auto" key="add">
-              <ListAddButton
-                isAdding={isAdding}
-                count={lists.length}
-                handleAdd={this.handleAddList}
-                handleCancel={this.handleCancelList}
-                handleSave={this.handleSaveList}
-                handleChange={this.handleChange}
-              />
-            </div>
+    const { isAdding } = this.state;
+    return (
+      <div className="d-flex flex-column">
+        <div className="row mx-0 mb-3 align-items-center">
+          <div className="col-auto">
+            <h3 className="board-header-title">{name}</h3>
+          </div>
+          <div className="col-auto">
+            <button type="button" className="btn bg-trans-dark-hover board-header-icon">
+              <FontAwesomeIcon icon={['far', 'star']} />
+            </button>
+          </div>
+          <div className="col-autol ml-auto">
+            <button type="button" className="btn bg-trans-dark-hover board-header-icon">
+              <FontAwesomeIcon icon="trash" />
+            </button>
           </div>
         </div>
-      );
-    }
-    return (
-      <div className="d-flex flex-column text-center">
-        <h2 className="text-danger">Error</h2>
-        <h3>{`The requested board "${name}" does not exist...`}</h3>
+        <div className="row">
+          {
+            lists.map(listId => (
+              <div className="col-auto" key={listId}>
+                <List listId={listId} handleDeleteList={this.handleDeleteList} />
+              </div>
+            ))
+          }
+          <div className="col-auto" key="add">
+            <ListAddButton
+              isAdding={isAdding}
+              count={lists.length}
+              handleAdd={this.handleAddList}
+              handleCancel={this.handleCancelList}
+              handleSave={this.handleSaveList}
+              handleChange={this.handleChange}
+            />
+          </div>
+        </div>
       </div>
     );
   }
