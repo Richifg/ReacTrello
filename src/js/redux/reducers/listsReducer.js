@@ -6,6 +6,7 @@ import {
   DELETE_LIST,
   CREATE_CARD,
   DELETE_CARD,
+  DELETE_BOARD,
 } from '../actions';
 
 const initState = {
@@ -49,6 +50,7 @@ function deleteCard(state, action) {
   return updateObj(state, { [listId]: updatedList });
 }
 
+
 const listsReducer = (state = initState, action) => {
   switch (action.type) {
     case CREATE_LIST: return createList(state, action);
@@ -56,6 +58,7 @@ const listsReducer = (state = initState, action) => {
     case DELETE_LIST: return deleteFromObj(state, action.payload.listId);
     case CREATE_CARD: return createCard(state, action);
     case DELETE_CARD: return deleteCard(state, action);
+    case DELETE_BOARD: return deleteFromObj(state, action.payload.listIds);
     default: return state;
   }
 };

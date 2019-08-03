@@ -4,7 +4,6 @@ $transparent-white-20: rgba(255,255,255,0.2);
 $transparent-white-40: rgba(255,255,255,0.4);
 $transparent-white-60: rgba(255,255,255,0.6);
 $transparent-white-80: rgba(255,255,255,0.8);
-
 $transparent-black-20: rgba(0,0,0,0.2);
 $transparent-black-40: rgba(0,0,0,0.4);
 
@@ -39,6 +38,10 @@ $color-shades: (
 
 .bg-trans {
   background-color: $transparent-white-40;
+}
+
+.bg-trans-dark {
+  background-color: $transparent-black-20;
 }
 
 .bg-trans-hover:hover {

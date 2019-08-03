@@ -21,7 +21,7 @@ const AppBody = ({ color }) => (
     <Router>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/board/:id/:name" component={BoardPage} />
+        <Route path="/board/:id" component={BoardPage} />
         <Route component={NoMatchPage} />
       </Switch>
     </Router>

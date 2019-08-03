@@ -37,10 +37,11 @@ HomePage.propTypes = {
 };
 
 // #DEBUG
-const mapStateToProps = state => ({
-  boards: Object.keys(state.boards),
-  recent: state.misc.recent,
-});
-
+const mapStateToProps = (state) => {
+  const boards = Object.keys(state.boards);
+  const { recent } = state.misc;
+  const starred = boards.filter(id => state.boards[id].starred);
+  return ({ boards, recent, starred });
+};
 
 export default connect(mapStateToProps)(HomePage);

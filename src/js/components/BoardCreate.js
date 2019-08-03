@@ -36,14 +36,16 @@ class CreateModal extends React.Component {
     this.setState({ color: e.target.value });
   }
 
-  handleClickCreate() {
-    const { name, color } = this.state;
-    if (name) {
-      const { createBoard } = this.props;
-      const boardId = getNewId();
-      createBoard({ boardId, name, color });
-      this.setState({ name: '' });
-      document.getElementById('modal-close').click();
+  handleClickCreate(e) {
+    if (!e.key || e.key === 'Enter') {
+      const { name, color } = this.state;
+      if (name) {
+        const { createBoard } = this.props;
+        const boardId = getNewId();
+        createBoard({ boardId, name, color });
+        this.setState({ name: '' });
+        document.getElementById('modal-close').click();
+      }
     }
   }
 
@@ -66,6 +68,7 @@ class CreateModal extends React.Component {
                       type="text"
                       className="form-control board-title-input"
                       placeholder="Enter board title"
+                      onKeyPress={this.handleClickCreate}
                       onChange={this.handleChange}
                       value={name}
                     />

@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { addRecentAction, createListAction, deleteListAction } from '../redux/actions';
+import {
+  addRecentAction,
+  createListAction,
+  deleteListAction,
+  deleteBoardAction,
+  modifyBoardAction,
+  removeRecentAction,
+} from '../redux/actions';
+
 import List from './List';
 import ListAddButton from './ListAddButton';
 import { getNewId } from '../utils';
@@ -21,6 +29,8 @@ class Board extends React.Component {
     this.handleSaveList = this.handleSaveList.bind(this);
     this.handleCancelList = this.handleCancelList.bind(this);
     this.handleDeleteList = this.handleDeleteList.bind(this);
+    this.handleDeleteBoard = this.handleDeleteBoard.bind(this);
+    this.handleStarred = this.handleStarred.bind(this);
   }
 
   componentDidMount() {
@@ -64,8 +74,29 @@ class Board extends React.Component {
     deleteList({ listId, boardId, cardIds: cards });
   }
 
+  handleDeleteBoard() {
+    const {
+      deleteBoard,
+      boardId,
+      cards: cardIds,
+      lists: listIds,
+    } = this.props;
+    deleteBoard({ boardId, cardIds, listIds });
+  }
+
+  handleStarred() {
+    const {
+      starred,
+      boardId,
+      modifyBoard,
+      removeRecent,
+    } = this.props;
+    if (!starred) removeRecent({ boardId });
+    modifyBoard({ boardId, newValues: { starred: !starred } });
+  }
+
   render() {
-    const { lists, name } = this.props;
+    const { lists, name, starred } = this.props;
     const { isAdding } = this.state;
     return (
       <div className="d-flex flex-column">
@@ -74,14 +105,22 @@ class Board extends React.Component {
             <h3 className="board-header-title">{name}</h3>
           </div>
           <div className="col-auto">
-            <button type="button" className="btn bg-trans-dark-hover board-header-icon">
+            <button
+              type="button"
+              onClick={this.handleStarred}
+              className={`btn bg-trans-dark-hover board-header-icon ${starred ? 'board-header-star' : ''}`}
+            >
               <FontAwesomeIcon icon={['far', 'star']} />
             </button>
           </div>
           <div className="col-autol ml-auto">
-            <button type="button" className="btn bg-trans-dark-hover board-header-icon">
+            <a
+              className="btn bg-trans-dark-hover board-header-icon"
+              href="#/"
+              onClick={this.handleDeleteBoard}
+            >
               <FontAwesomeIcon icon="trash" />
-            </button>
+            </a>
           </div>
         </div>
         <div className="row">
@@ -111,22 +150,33 @@ class Board extends React.Component {
 Board.propTypes = {
   boardId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  starred: PropTypes.bool.isRequired,
   lists: PropTypes.arrayOf(PropTypes.string).isRequired,
+  cards: PropTypes.arrayOf(PropTypes.string).isRequired,
   createList: PropTypes.func.isRequired,
   deleteList: PropTypes.func.isRequired,
   addRecent: PropTypes.func.isRequired,
+  deleteBoard: PropTypes.func.isRequired,
+  modifyBoard: PropTypes.func.isRequired,
+  removeRecent: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  name: state.boards[ownProps.boardId].name,
-  lists: state.boards[ownProps.boardId].lists,
-});
+const mapStateToProps = (state, ownProps) => {
+  const { name, lists, starred } = state.boards[ownProps.boardId];
+  const cards = lists.reduce((prev, id) => [...prev, ...state.lists[id].cards], []);
+  return ({
+    name, lists, starred, cards,
+  });
+};
 
 const mapDispatchToProps = dispatch => (
   {
     createList: payload => dispatch(createListAction(payload)),
     deleteList: payload => dispatch(deleteListAction(payload)),
     addRecent: payload => dispatch(addRecentAction(payload)),
+    deleteBoard: payload => dispatch(deleteBoardAction(payload)),
+    modifyBoard: payload => dispatch(modifyBoardAction(payload)),
+    removeRecent: payload => dispatch(removeRecentAction(payload)),
   }
 );
 
