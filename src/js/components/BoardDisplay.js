@@ -30,6 +30,7 @@ const BoardDisplay = ({
             className={`btn p-0 ml-auto board-display-star ${starred ? 'star-yellow' : 'star-white'}`}
             onClick={(e) => {
               modifyBoard({ boardId, newValues: { starred: !starred } });
+              e.preventDefault();
               e.stopPropagation();
             }}
           >
