@@ -21,7 +21,7 @@ const AppBody = ({ color }) => (
     <Router>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/board/:name" component={BoardPage} />
+        <Route path="/board/:id/:name" component={BoardPage} />
         <Route component={NoMatchPage} />
       </Switch>
     </Router>
@@ -38,7 +38,7 @@ AppBody.propTypes = {
 };
 
 const mapStateToProps = state => (
-  { color: state.color }
+  { color: state.ui.color }
 );
 
 export default connect(mapStateToProps)(AppBody);

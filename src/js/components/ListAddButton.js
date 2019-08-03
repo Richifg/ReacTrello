@@ -59,7 +59,7 @@ ListAddButton.propTypes = {
 };
 
 const mapStateToProps = state => (
-  { color: state.color }
+  { color: state.ui.color }
 );
 
 export default connect(mapStateToProps)(ListAddButton);

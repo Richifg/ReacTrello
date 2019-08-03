@@ -1,23 +1,38 @@
-export const ADD_CARD = 'ADD_CARD';
+// board actions
+export const CREATE_BOARD = 'CREATE_BOARD';
+export const MODIFY_BOARD = 'MODIFY_BOARD';
+export const DELETE_BOARD = 'DELETE_BOARD';
+
+export const createBoardAction = payload => ({ type: CREATE_BOARD, payload });
+export const modifyBoardAction = payload => ({ type: MODIFY_BOARD, payload });
+export const deleteBoardAction = payload => ({ type: DELETE_BOARD, payload });
+
+
+// list actions
+
+export const CREATE_LIST = 'CREATE_LIST';
+export const MODIFY_LIST = 'MODIFY_LIST';
+export const DELETE_LIST = 'DELETE_LIST';
+
+export const createListAction = payload => ({ type: CREATE_LIST, payload });
+export const modifyListAction = payload => ({ type: MODIFY_LIST, payload });
+export const deleteListAction = payload => ({ type: DELETE_LIST, payload });
+
+
+// card actions
+
+export const CREATE_CARD = 'CREATE_CARD';
 export const MODIFY_CARD = 'MODIFY_CARD';
-export const REMOVE_CARD = 'REMOVE_CARD';
-export const ADD_LIST = 'ADD_LIST';
-export const RENAME_LIST = 'RENAME_LIST';
-export const REMOVE_LIST = 'REMOVE_LIST';
-export const CREATE_BOARD = 'ADD_BOARD';
-export const RENAME_BOARD = 'RENAME_BOARD';
-export const REMOVE_BOARD = 'DELETE_BOARD';
+export const DELETE_CARD = 'DELETE_CARD';
+
+export const createCardAction = payload => ({ type: CREATE_CARD, payload });
+export const modifyCardAction = payload => ({ type: MODIFY_CARD, payload });
+export const deleteCardAction = payload => ({ type: DELETE_CARD, payload });
+
+// misc actions
+
 export const UPDATE_COLOR = 'UPDATE_COLOR';
 export const ADD_RECENT = 'ADD_RECENT';
 
-export const addCardAction = payload => ({ type: ADD_CARD, payload });
-export const modifyCardAction = payload => ({ type: MODIFY_CARD, payload });
-export const removeCardsAction = payload => ({ type: REMOVE_CARD, payload });
-export const addListAction = payload => ({ type: ADD_LIST, payload });
-export const renameListAction = payload => ({ type: RENAME_LIST, payload });
-export const removeListAction = payload => ({ type: REMOVE_LIST, payload });
-export const createBoardAction = payload => ({ type: CREATE_BOARD, payload });
-export const renameBoardAction = payload => ({ type: RENAME_BOARD, payload });
-export const removeBoardAction = payload => ({ type: REMOVE_BOARD, payload });
 export const updateColorAction = payload => ({ type: UPDATE_COLOR, payload });
 export const addRecentAction = payload => ({ type: ADD_RECENT, payload });

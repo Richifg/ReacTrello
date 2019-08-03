@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { createBoardAction } from '../redux/actions';
 import BoardColors from './BoardColors';
+import { getNewId } from '../utils';
 
 const CreateButton = () => (
   <div className="col-lg-auto col-md-4 col-6 my-2 px-2">
@@ -39,7 +40,8 @@ class CreateModal extends React.Component {
     const { name, color } = this.state;
     if (name) {
       const { createBoard } = this.props;
-      createBoard({ name, color });
+      const boardId = getNewId();
+      createBoard({ boardId, name, color });
       this.setState({ name: '' });
       document.getElementById('modal-close').click();
     }

@@ -40,7 +40,7 @@ AppHeader.propTypes = {
 };
 
 const mapStateToProps = state => (
-  { color: state.color }
+  { color: state.ui.color }
 );
 
 const mapDispatchToProps = dispatch => (

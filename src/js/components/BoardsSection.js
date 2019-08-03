@@ -23,14 +23,10 @@ const BoardsSection = ({ children, title, icon }) => {
   return null;
 };
 
-BoardsSection.defaultProps = {
-  children: [],
-};
-
 BoardsSection.propTypes = {
   title: PropTypes.string.isRequired,
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 export default BoardsSection;

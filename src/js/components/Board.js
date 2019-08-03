@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addListAction, addRecentAction } from '../redux/actions';
+import { addRecentAction, createListAction } from '../redux/actions';
 import List from './List';
 import ListAddButton from './ListAddButton';
+import { getNewId } from '../utils';
 
 class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isAdding: false,
-      newList: null,
+      listName: null,
     };
     this.handleAddList = this.handleAddList.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -19,8 +20,8 @@ class Board extends React.Component {
   }
 
   componentDidMount() {
-    const { addRecent, name } = this.props;
-    addRecent({ name });
+    const { addRecent, boardId } = this.props;
+    addRecent({ boardId });
   }
 
   handleAddList() {
@@ -28,17 +29,18 @@ class Board extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({ newList: e.target.value });
+    this.setState({ listName: e.target.value });
   }
 
   handleSaveList(e) {
     if (!e.key || e.key === 'Enter') {
-      const { newList } = this.state;
-      if (newList) {
+      const { listName } = this.state;
+      if (listName) {
         document.getElementById('list-input').value = null;
-        const { addList, name: board } = this.props;
-        addList({ board, newList });
-        this.setState({ newList: null });
+        const { createList, boardId } = this.props;
+        const listId = getNewId();
+        createList({ boardId, listId, name: listName });
+        this.setState({ listName: null });
         // stop the enter key from adding a new line
         e.preventDefault();
       }
@@ -49,7 +51,7 @@ class Board extends React.Component {
     if (e.relatedTarget && e.relatedTarget.id === 'add-list-btn') {
       document.getElementById('list-input').focus();
     } else {
-      this.setState({ isAdding: false, newList: null });
+      this.setState({ isAdding: false, listName: null });
     }
   }
 
@@ -57,22 +59,21 @@ class Board extends React.Component {
     const { lists, name } = this.props;
     if (lists) {
       const { isAdding } = this.state;
-      const listNames = Object.keys(lists);
       return (
         <div className="d-flex flex-column">
           <h3>{name}</h3>
           <div className="row">
             {
-              listNames.map(listName => (
-                <div className="col-auto" key={listName}>
-                  <List board={name} name={listName} cards={lists[listName]} />
+              lists.map(listId => (
+                <div className="col-auto" key={listId}>
+                  <List listId={listId} />
                 </div>
               ))
             }
             <div className="col-auto" key="add">
               <ListAddButton
                 isAdding={isAdding}
-                count={listNames.length}
+                count={lists.length}
                 handleAdd={this.handleAddList}
                 handleCancel={this.handleCancelList}
                 handleSave={this.handleSaveList}
@@ -93,20 +94,21 @@ class Board extends React.Component {
 }
 
 Board.propTypes = {
+  boardId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  lists: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
-  addList: PropTypes.func.isRequired,
+  lists: PropTypes.arrayOf(PropTypes.string).isRequired,
+  createList: PropTypes.func.isRequired,
   addRecent: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const board = state.boards[ownProps.name];
-  return ({ lists: board ? board.lists : null });
-};
+const mapStateToProps = (state, ownProps) => ({
+  name: state.boards[ownProps.boardId].name,
+  lists: state.boards[ownProps.boardId].lists,
+});
 
 const mapDispatchToProps = dispatch => (
   {
-    addList: payload => dispatch(addListAction(payload)),
+    createList: payload => dispatch(createListAction(payload)),
     addRecent: payload => dispatch(addRecentAction(payload)),
   }
 );

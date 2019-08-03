@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import Board from '../components/Board';
 
 const BoardPage = ({ match, color }) => {
-  const { name } = match.params;
+  const { id } = match.params;
   return (
     <div id="content" className={`container-fluid py-4 bg-light-${color}`}>
       <div className="d-flex flex-column">
-        <Board name={name} />
+        <Board boardId={id} />
       </div>
     </div>
   );
@@ -21,7 +21,7 @@ BoardPage.propTypes = {
 };
 
 const mapStateToProps = state => (
-  { color: state.color }
+  { color: state.ui.color }
 );
 
 

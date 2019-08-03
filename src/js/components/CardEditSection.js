@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { connect } from 'react-redux';
 import CardInput from './CardInput';
 
 const EditSection = ({
@@ -24,7 +24,7 @@ const EditSection = ({
     </div>
     <div className="row mx-0 justify-content-between">
       <div className="col-auto p-0">
-        <button type="button" className="btn btn-success" onClick={handleSave}>Save</button>
+        <button type="button" id="add-card-btn" className="btn btn-success" onClick={handleSave}>Save</button>
       </div>
       <div className="col-auto p-0">
         <button type="button" className="btn btn-info" onClick={handleCancel}>Cancel</button>
@@ -44,4 +44,8 @@ EditSection.propTypes = {
   description: PropTypes.string.isRequired,
 };
 
-export default EditSection;
+const mapStateToProps = (state, ownProps) => ({
+  description: state.cards[ownProps.cardId].description,
+});
+
+export default connect(mapStateToProps)(EditSection);

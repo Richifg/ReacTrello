@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Card = ({ description, onClick }) => (
+const Card = ({ cardId, description, onClick }) => (
   <div className="card mb-2 px-2 py-1 bg-light card-display container">
     <div className="row mx-0">
       <div className="col-11 px-0">
@@ -12,7 +13,7 @@ const Card = ({ description, onClick }) => (
         <button
           type="button"
           className="btn bg-trans bg-trans-dark-hover p-1 card-edit-button"
-          onClick={onClick}
+          onClick={() => onClick(cardId, description)}
         >
           <FontAwesomeIcon icon="pen" className="text-muted" />
         </button>
@@ -22,8 +23,13 @@ const Card = ({ description, onClick }) => (
 );
 
 Card.propTypes = {
+  cardId: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-export default Card;
+const mapStateToProps = (state, ownProps) => ({
+  description: state.cards[ownProps.cardId].description,
+});
+
+export default connect(mapStateToProps)(Card);
