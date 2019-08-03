@@ -90,18 +90,6 @@ $board-color-border-size: 1px;
 
 
 // board color selection
-
-@mixin darken-color-option() {
-  content: "";
-  position: absolute;
-  width: $board-color-size;
-  height: $board-color-size;
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.2);
-  top: -$board-color-border-size;
-  right: -$board-color-border-size;
-}
-
 .board-color-option {
   box-sizing: border-box;
   cursor: pointer;
@@ -111,18 +99,10 @@ $board-color-border-size: 1px;
   width: $board-color-size;
   height: $board-color-size;
   position: relative;
-
-  &:hover::after{
-    @include darken-color-option();
-  }
 }
 
 .board-color-input {
   display: none;
-
-  &:checked + .board-color-option::after {
-    @include darken-color-option();
-  }
 }
 
 // board page styles
