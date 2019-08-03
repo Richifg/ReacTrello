@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ListInput from './ListInput';
 
 const ListAddButton = ({
@@ -18,8 +19,8 @@ const ListAddButton = ({
         <div className="d-flex flex-column p-2">
           <ListInput
             onChange={handleChange}
-            onBlur={handleCancel}
             onKeyPress={handleSave}
+            onBlur={handleCancel}
           />
           <div className="row mt-2">
             <div className="col">
@@ -27,9 +28,9 @@ const ListAddButton = ({
                 Add List
               </button>
             </div>
-            <div className="col">
-              <button type="button" className="close" aria-label="close" onClick={handleCancel}>
-                <span aria-hidden="true">&times;</span>
+            <div className="col pt-2">
+              <button type="button" className="close" onClick={handleCancel}>
+                <FontAwesomeIcon icon="times" />
               </button>
             </div>
           </div>

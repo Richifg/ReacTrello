@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CardInput from './CardInput';
 
 const EditSection = ({
@@ -24,13 +25,13 @@ const EditSection = ({
     </div>
     <div className="row mx-0 justify-content-between">
       <div className="col-auto p-0">
-        <button type="button" id="add-card-btn" className="btn btn-success" onClick={handleSave}>Save</button>
-      </div>
-      <div className="col-auto p-0">
-        <button type="button" className="btn btn-info" onClick={handleCancel}>Cancel</button>
-      </div>
-      <div className="col-auto p-0">
+        <button type="button" id="add-card-btn" className="btn btn-success mr-2" onClick={handleSave}>Save</button>
         <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
+      </div>
+      <div className="col-auto px-0 pt-2">
+        <button type="button" className="close" onClick={handleCancel}>
+          <FontAwesomeIcon icon="times" />
+        </button>
       </div>
     </div>
   </div>

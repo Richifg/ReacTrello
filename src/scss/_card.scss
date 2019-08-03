@@ -11,6 +11,10 @@
   }
 }
 
+.card-edit-button:focus {
+  opacity:1;
+}
+
 .card-edit-button {
   opacity: 0;
 }

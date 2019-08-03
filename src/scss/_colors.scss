@@ -27,11 +27,11 @@ $color-shades: (
     background-color: #{$light};
     border-color: #{$light};
   }
-  .bg-#{$name}, .bg-light-#{$name}-hover:hover {
+  .bg-#{$name}, .bg-light-#{$name}-hover:hover .bg-light-#{$name}-hover:focus {
     background-color: #{$normal};
     border-color: #{$normal};
   }
-  .bg-dark-#{$name}, .bg-#{$name}-hover:hover {
+  .bg-dark-#{$name}, .bg-#{$name}-hover:hover, .bg-#{$name}-hover:focus {
     background-color: #{$dark};
     border-color: #{$dark};
   }

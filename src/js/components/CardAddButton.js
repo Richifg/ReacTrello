@@ -14,7 +14,7 @@ const CardAddButton = ({
       <div className="p-2">
         <button id="add-card-btn" type="button" className="btn btn-success" onClick={handleSave}>Add Card</button>
         <button type="button" className="close" aria-label="close" onClick={handleCancel}>
-          <span aria-hidden="true">&times;</span>
+          <FontAwesomeIcon icon="times" />
         </button>
       </div>
     );

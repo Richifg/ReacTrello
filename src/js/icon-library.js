@@ -2,6 +2,7 @@
 import {
   faHome,
   faPlus,
+  faTimes,
   faPen,
   faClipboardList,
 } from '@fortawesome/free-solid-svg-icons';
@@ -17,6 +18,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 library.add(
   faHome,
   faPlus,
+  faTimes,
   faStar,
   faClock,
   faPen,
