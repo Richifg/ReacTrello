@@ -13,6 +13,7 @@ import {
   faUser,
   faStar,
   faClock,
+  faCheckCircle,
 } from '@fortawesome/free-regular-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
@@ -21,9 +22,10 @@ library.add(
   faTrash,
   faPlus,
   faTimes,
+  faPen,
+  faClipboardList,
+  faUser,
   faStar,
   faClock,
-  faPen,
-  faUser,
-  faClipboardList,
+  faCheckCircle,
 );

@@ -59,9 +59,9 @@ class CreateModal extends React.Component {
       <div id="create-board-modal" className="modal fade" tabIndex="-1" role="dialog" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content board-create-modal-bg">
-            <div className="modal-body">
-              <div className="row">
-                <div className="col-auto">
+            <div className="modal-body p-2">
+              <div className="row mx-0">
+                <div className="col-12 col-md-9 p-0">
                   <div className={`card board-display-preview bg-${color}`}>
                     <input
                       id="new-board-title-input"
@@ -74,12 +74,12 @@ class CreateModal extends React.Component {
                     />
                   </div>
                 </div>
-                <div className="col-3">
-                  <BoardColors onClick={this.handleClickColor} />
+                <div className="col-12 col-md-3 p-0">
+                  <BoardColors onClick={this.handleClickColor} selectedColor={color} />
                 </div>
               </div>
             </div>
-            <div className="modal-footer justify-content-start border-top-0">
+            <div className="modal-footer px-2 pb-2 pt-0 justify-content-start border-top-0">
               <button type="button" className="btn btn-success" onClick={this.handleClickCreate}>Create Board</button>
               <button type="button" className="btn btn-danger" id="modal-close" data-dismiss="modal">Cancel</button>
             </div>

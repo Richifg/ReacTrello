@@ -84,14 +84,12 @@ $board-color-border-size: 1px;
 }
 
 .board-create-modal-bg {
-  background-color: transparent;
   border: none;
 }
 
 
 // board color selection
 .board-color-option {
-  box-sizing: border-box;
   cursor: pointer;
   display: block;
   border-radius: 5px;
@@ -105,6 +103,9 @@ $board-color-border-size: 1px;
   display: none;
 }
 
+.color-check-icon { 
+  font-size: $board-color-size *0.9
+}
 // board page styles
 
 .board-header-title { 
