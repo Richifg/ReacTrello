@@ -11,10 +11,17 @@ import {
 const initState = {
   b1: {
     name: 'Test Board',
-    color: 'blue',
+    color: 'gray',
     lists: ['l1', 'l2', 'l3'],
     accessed: null,
     starred: false,
+  },
+  b2: {
+    name: 'Grocery List',
+    color: 'blue',
+    lists: ['l4', 'l5'],
+    accessed: null,
+    starred: true,
   },
 };
 

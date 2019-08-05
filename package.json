@@ -1,7 +1,8 @@
 {
-  "name": "trelloclone",
+  "name": "reactrello",
   "version": "1.0.0",
-  "description": "a simple Trello clone",
+  "description": "A simple Trello clone",
+  "keywords": ["trello", "trello-clone", "react"],
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

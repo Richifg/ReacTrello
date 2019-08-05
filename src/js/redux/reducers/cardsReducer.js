@@ -14,13 +14,31 @@ const initState = {
     checked: false,
   },
   c2: {
-    description: 'Cara 2',
+    description: 'Card 2',
     checked: false,
   },
   c3: {
-    description: 'Lorem Ipsum long descriptium',
+    description: 'Lorem Ipsum lorem ipsum, this card has a long description',
     checked: false,
   },
+  c4: {
+    description: 'Eggs',
+    checked: false,
+  },
+  c5: {
+    description: 'Milk',
+    checked: false,
+  },
+  c6: {
+    description: 'Bread',
+    checked: false,
+  },
+  c7: {
+    description: 'Frozen pizza',
+    checked: false,
+  },
+
+
 };
 
 function createCard(state, action) {

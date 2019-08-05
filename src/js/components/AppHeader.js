@@ -26,7 +26,7 @@ const AppHeader = ({ color, updateColor }) => (
             style={{ fontFamily: "'Pacifico', cursive" }}
           >
             <FontAwesomeIcon icon="clipboard-list" />
-            <h1 className="header ml-1 my-0">Trello Clone</h1>
+            <h1 className="header ml-1 my-0">ReacTrello</h1>
           </a>
         </div>
       </div>

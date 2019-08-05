@@ -24,6 +24,14 @@ const initState = {
     name: 'List 3',
     cards: [],
   },
+  l4: {
+    name: 'Stuffn to buy',
+    cards: ['c4', 'c5', 'c6', 'c7'],
+  },
+  l5: {
+    name: 'Bought',
+    cards: [],
+  },
 };
 
 function createList(state, action) {
