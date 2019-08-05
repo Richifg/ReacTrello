@@ -11,7 +11,7 @@ import {
   updateColorAction,
 } from '../redux/actions';
 
-import List from './List';
+import ListWrapper from './ListWrapper';
 import ListAddButton from './ListAddButton';
 import { getNewId } from '../utils';
 
@@ -126,7 +126,7 @@ class Board extends React.Component {
           {
             lists.map(listId => (
               <div className="col-auto" key={listId}>
-                <List listId={listId} handleDeleteList={this.handleDeleteList} />
+                <ListWrapper listId={listId} onDeleteList={this.handleDeleteList} />
               </div>
             ))
           }

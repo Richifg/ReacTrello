@@ -1,0 +1,10 @@
+.dragging {
+  display: none;
+}
+
+.drop-preview {
+  background-color: $transparent-black-20 !important;
+  & > * {
+    visibility: hidden;
+  }
+}

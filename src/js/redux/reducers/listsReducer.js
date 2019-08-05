@@ -6,6 +6,8 @@ import {
   DELETE_LIST,
   CREATE_CARD,
   DELETE_CARD,
+  ADD_CARD,
+  REMOVE_CARD,
   DELETE_BOARD,
 } from '../actions';
 
@@ -56,7 +58,9 @@ const listsReducer = (state = initState, action) => {
     case CREATE_LIST: return createList(state, action);
     case MODIFY_LIST: return modifyList(state, action);
     case DELETE_LIST: return deleteFromObj(state, action.payload.listId);
+    case ADD_CARD:
     case CREATE_CARD: return createCard(state, action);
+    case REMOVE_CARD:
     case DELETE_CARD: return deleteCard(state, action);
     case DELETE_BOARD: return deleteFromObj(state, action.payload.listIds);
     default: return state;

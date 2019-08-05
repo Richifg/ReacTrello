@@ -7,6 +7,7 @@ import {
   createCardAction,
   modifyCardAction,
   deleteCardAction,
+  removeCardAction,
 } from '../redux/actions';
 
 import Card from './Card';
@@ -23,13 +24,13 @@ class List extends React.Component {
       isAdding: false,
       cardText: null,
     };
-    this.handleAdd = this.handleAdd.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleAddCard = this.handleAddCard.bind(this);
+    this.handleSaveCard = this.handleSaveCard.bind(this);
+    this.handleCancelCard = this.handleCancelCard.bind(this);
+    this.handleDeleteCard = this.handleDeleteCard.bind(this);
+    this.handleChangeCard = this.handleChangeCard.bind(this);
     this.handleStartEdit = this.handleStartEdit.bind(this);
-    this.handleSaveEdit = this.handleSaveEdit.bind(this);
+    this.handleSaveCardEdit = this.handleSaveCardEdit.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -40,13 +41,13 @@ class List extends React.Component {
     || nextState.editId !== editId;
   }
 
-  handleAdd(e) {
+  handleAddCard(e) {
     if (!e.key || e.key === 'Enter') {
       this.setState({ isAdding: true });
     }
   }
 
-  handleSave(e) {
+  handleSaveCard(e) {
     if (!e.key || e.key === 'Enter') {
       const { cardText } = this.state;
       if (cardText) {
@@ -61,21 +62,21 @@ class List extends React.Component {
     }
   }
 
-  handleCancel(e) {
+  handleCancelCard(e) {
     if (!e.relatedTarget
       || !['add-card-btn', 'delete-card-btn'].includes(e.relatedTarget.id)) {
       this.setState({ isAdding: false, cardText: null, editId: null });
     }
   }
 
-  handleDelete() {
+  handleDeleteCard() {
     const { deleteCard, listId } = this.props;
     const { editId: cardId } = this.state;
     deleteCard({ listId, cardId });
     this.setState({ editId: null, cardText: null });
   }
 
-  handleChange(e) {
+  handleChangeCard(e) {
     this.setState({ cardText: e.target.value });
   }
 
@@ -83,7 +84,7 @@ class List extends React.Component {
     this.setState({ editId: key, cardText: desc });
   }
 
-  handleSaveEdit(e) {
+  handleSaveCardEdit(e) {
     if (!e.key || e.key === 'Enter') {
       const { cardText, editId } = this.state;
       if (cardText) {
@@ -95,14 +96,22 @@ class List extends React.Component {
     }
   }
 
+  handleBeginDragCard(monitor) {
+    const { removeCard, listId } = this.props;
+    const cardId = monitor.getItem().id;
+    removeCard({ cardId, listId });
+  }
+
   render() {
     const {
       name,
       cards,
       listId,
-      handleDeleteList,
+      onDeleteList,
+      children,
     } = this.props;
     const { isAdding, editId } = this.state;
+
     return (
       <div className="card list mb-4 text-dark">
         <div className="card-title container px-0">
@@ -110,7 +119,7 @@ class List extends React.Component {
             <h6 className="pt-2 ml-3 mb-0">{name}</h6>
             <button
               type="button"
-              onClick={() => handleDeleteList(listId, cards)}
+              onClick={() => onDeleteList(listId, cards)}
               className="btn bg-trans-dark-hover delete-list-btn px-2 ml-auto"
             >
               <FontAwesomeIcon className="text-secondary" icon="trash" />
@@ -124,46 +133,58 @@ class List extends React.Component {
                 <CardEditSection
                   key={cardId}
                   cardId={cardId}
-                  handleCancel={this.handleCancel}
-                  handleChange={this.handleChange}
-                  handleSave={this.handleSaveEdit}
-                  handleDelete={this.handleDelete}
+                  handleCancel={this.handleCancelCard}
+                  handleChange={this.handleChangeCard}
+                  handleSave={this.handleSaveCardEdit}
+                  handleDelete={this.handleDeleteCard}
                 />
               );
             }
             return (
-              <Card cardId={cardId} key={cardId} onClick={this.handleStartEdit} />
+              <Card
+                cardId={cardId}
+                listId={listId}
+                key={cardId}
+                onClick={this.handleStartEdit}
+              />
             );
           })}
+          {children}
           { isAdding && (
             <CardInput
               id="card-input"
-              onChange={this.handleChange}
-              onKeyPress={this.handleSave}
-              onBlur={this.handleCancel}
+              onChange={this.handleChangeCard}
+              onKeyPress={this.handleSaveCard}
+              onBlur={this.handleCancelCard}
             />
           )}
         </div>
         <CardAddButton
           isAdding={isAdding}
           count={cards.length}
-          handleAdd={this.handleAdd}
-          handleSave={this.handleSave}
-          handleCancel={this.handleCancel}
+          handleAdd={this.handleAddCard}
+          handleSave={this.handleSaveCard}
+          handleCancel={this.handleCancelCard}
         />
       </div>
     );
   }
 }
 
+List.defaultProps = {
+  children: null,
+};
+
 List.propTypes = {
   listId: PropTypes.string.isRequired,
   cards: PropTypes.arrayOf(PropTypes.string).isRequired,
   name: PropTypes.string.isRequired,
-  handleDeleteList: PropTypes.func.isRequired,
+  onDeleteList: PropTypes.func.isRequired,
   createCard: PropTypes.func.isRequired,
   modifyCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
+  removeCard: PropTypes.func.isRequired,
+  children: PropTypes.node,
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -175,6 +196,7 @@ const mapDispathToProps = dispatch => ({
   createCard: payload => dispatch(createCardAction(payload)),
   modifyCard: payload => dispatch(modifyCardAction(payload)),
   deleteCard: payload => dispatch(deleteCardAction(payload)),
+  removeCard: payload => dispatch(removeCardAction(payload)),
 });
 
 export default connect(mapStateToProps, mapDispathToProps)(List);

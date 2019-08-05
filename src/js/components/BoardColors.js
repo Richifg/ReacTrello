@@ -17,6 +17,7 @@ const BoardColors = ({ onClick, selectedColor }) => (
               id={`option-${color}`}
               value={color}
               name="board-color"
+              readOnly
               onClick={onClick}
             />
             <span className={`board-color-option bg-${color} bg-${color}-hover`}>
