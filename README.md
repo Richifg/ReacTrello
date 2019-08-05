@@ -1,4 +1,4 @@
-# Trello-clone
+# ReacTrello
 A simple Trello clone built with react and bootstrap.
 
 # Demo
