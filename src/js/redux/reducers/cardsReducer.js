@@ -14,7 +14,7 @@ const initState = {
     checked: false,
   },
   c2: {
-    description: 'Card 2',
+    description: 'Drag me to another list!!',
     checked: false,
   },
   c3: {
