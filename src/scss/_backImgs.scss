@@ -1,0 +1,14 @@
+$img-urls: (
+  sea: url("../assets/board_backgrounds/dan-meyers-wJmPL47HJoY-unsplash.jpg"),
+  night: url("../assets/board_backgrounds/jake-weirick-GmpAopbwjaE-unsplash.jpg"),
+  beach: url("../assets/board_backgrounds/janke-laskowski-TqHCfRsBMos-unsplash.jpg"),
+);
+
+@each $img, $url in $img-urls {
+  .bg-img-#{$img} {
+    background-image: $url;
+    background-color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}

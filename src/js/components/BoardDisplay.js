@@ -3,22 +3,23 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { updateColorAction, modifyBoardAction } from '../redux/actions';
+import { modifyBoardAction, updateUiAction } from '../redux/actions';
 
 const BoardDisplay = ({
   boardId,
   name,
   color,
+  img,
   starred,
-  updateColor,
+  updateUI,
   modifyBoard,
 }) => (
   <div className="col-lg-auto col-md-4 col-6 my-2">
     <a
       role="button"
-      className={`btn btn-block text-light board-display bg-${color} bg-${color}-hover`}
+      className={`btn btn-block text-light board-display bg-${color} bg-${color}-hover ${img ? `bg-img-${img}` : ''}`}
       href={`#/board/${boardId}`}
-      onClick={() => updateColor({ color })}
+      onClick={() => updateUI({ color, img })}
     >
       <div className="container h-100 px-0">
         <div className="row mx-0 h-75">
@@ -42,24 +43,29 @@ const BoardDisplay = ({
   </div>
 );
 
+BoardDisplay.defaultProps = {
+  img: null,
+};
 
 BoardDisplay.propTypes = {
   boardId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
+  img: PropTypes.string,
   starred: PropTypes.bool.isRequired,
-  updateColor: PropTypes.func.isRequired,
+  updateUI: PropTypes.func.isRequired,
   modifyBoard: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({
   color: state.boards[ownProps.boardId].color,
+  img: state.boards[ownProps.boardId].img,
   name: state.boards[ownProps.boardId].name,
   starred: state.boards[ownProps.boardId].starred,
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateColor: payload => dispatch(updateColorAction(payload)),
+  updateUI: payload => dispatch(updateUiAction(payload)),
   modifyBoard: payload => dispatch(modifyBoardAction(payload)),
 });
 

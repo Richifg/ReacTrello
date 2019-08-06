@@ -15,8 +15,8 @@ import NoMatchPage from '../pages/noMatchPage';
 import AppHeader from './AppHeader';
 
 
-const AppBody = ({ color }) => (
-  <div id="app" className="d-flex flex-column text-light">
+const AppBody = ({ color, img }) => (
+  <div id="app" className={`d-flex flex-column text-light ${img ? `bg-img-${img}` : ''}`}>
     <AppHeader />
     <Router>
       <Switch>
@@ -37,8 +37,9 @@ AppBody.propTypes = {
   color: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => (
-  { color: state.ui.color }
-);
+const mapStateToProps = state => ({ 
+  color: state.ui.color,
+  img: state.ui.img,
+});
 
 export default connect(mapStateToProps)(AppBody);

@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { updateColorAction } from '../redux/actions';
+import { updateUiAction } from '../redux/actions';
 
-const AppHeader = ({ color, updateColor }) => (
+const AppHeader = ({ color, updatedUI }) => (
   <div id="header" className={`container-fluid bg-${color} p-1`}>
     <div className="row mx-0">
       <div className="col-4 px-0">
         <a
           className="btn header bg-trans bg-trans-hover p-1"
           href="#/"
-          onClick={() => updateColor()}
+          onClick={() => updatedUI()}
         >
           <FontAwesomeIcon className="text-light" icon="home" />
         </a>
@@ -22,7 +22,7 @@ const AppHeader = ({ color, updateColor }) => (
           <a
             className="btn header text-trans text-trans-hover d-flex p-1"
             href="#/"
-            onClick={() => updateColor()}
+            onClick={() => updatedUI()}
             style={{ fontFamily: "'Pacifico', cursive" }}
           >
             <FontAwesomeIcon icon="clipboard-list" />
@@ -36,7 +36,7 @@ const AppHeader = ({ color, updateColor }) => (
 
 AppHeader.propTypes = {
   color: PropTypes.string.isRequired,
-  updateColor: PropTypes.func.isRequired,
+  updatedUI: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -44,7 +44,7 @@ const mapStateToProps = state => (
 );
 
 const mapDispatchToProps = dispatch => (
-  { updateColor: () => dispatch(updateColorAction({ color: 'blue' })) }
+  { updatedUI: () => dispatch(updateUiAction({ color: 'blue', img: null })) }
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppHeader);

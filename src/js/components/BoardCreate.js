@@ -26,6 +26,7 @@ class CreateModal extends React.Component {
     this.state = {
       name: '',
       color: 'blue',
+      img: null,
     };
     this.handleClickColor = this.handleClickColor.bind(this);
     this.handleClickCreate = this.handleClickCreate.bind(this);
@@ -33,16 +34,21 @@ class CreateModal extends React.Component {
   }
 
   handleClickColor(e) {
-    this.setState({ color: e.target.value });
+    console.log(e.target.value);
+    const [color, img = null] = e.target.value.split('-');
+    console.log(color, img);
+    this.setState({ color, img });
   }
 
   handleClickCreate(e) {
     if (!e.key || e.key === 'Enter') {
-      const { name, color } = this.state;
+      const { name, color, img } = this.state;
       if (name) {
         const { createBoard } = this.props;
         const boardId = getNewId();
-        createBoard({ boardId, name, color });
+        createBoard({
+          boardId, name, color, img,
+        });
         this.setState({ name: '' });
         document.getElementById('modal-close').click();
       }
@@ -54,7 +60,7 @@ class CreateModal extends React.Component {
   }
 
   render() {
-    const { name, color } = this.state;
+    const { name, color, img } = this.state;
     return (
       <div id="create-board-modal" className="modal fade" tabIndex="-1" role="dialog" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
@@ -62,7 +68,7 @@ class CreateModal extends React.Component {
             <div className="modal-body p-2">
               <div className="row mx-0">
                 <div className="col-12 col-md-9 p-0">
-                  <div className={`card board-display-preview bg-${color}`}>
+                  <div className={`card board-display-preview bg-${color} ${img ? `bg-img-${img}` : ''}`}>
                     <input
                       id="new-board-title-input"
                       type="text"
@@ -75,7 +81,7 @@ class CreateModal extends React.Component {
                   </div>
                 </div>
                 <div className="col-12 col-md-3 p-0">
-                  <BoardColors onClick={this.handleClickColor} selectedColor={color} />
+                  <BoardColors onClick={this.handleClickColor} selectedColor={color} selectedImg={img} />
                 </div>
               </div>
             </div>

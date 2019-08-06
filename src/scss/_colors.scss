@@ -7,12 +7,14 @@ $transparent-white-80: rgba(255,255,255,0.8);
 $transparent-black-20: rgba(0,0,0,0.2);
 $transparent-black-40: rgba(0,0,0,0.4);
 
+
 $color-shades: (
   blue: (light: #0079BF, normal: #0067A3, dark: #005B8F),
   orange: (light: #D29034, normal: rgb(180, 117, 29), dark: rgb(121, 78, 17)),
   green: (light: #519839, normal: #35851a, dark: #255e13),
   red: (light: #B04632, normal: #963C2B, dark: #863526),
   gray: (light: #6F777B, normal: rgb(83, 87, 88), dark: rgb(59, 62, 63)),
+  img: (light: transparent, normal: $transparent-black-20,  dark: $transparent-black-40)
 );
 
 

@@ -12,6 +12,7 @@ const initState = {
   b1: {
     name: 'Test Board',
     color: 'gray',
+    img: null,
     lists: ['l1', 'l2', 'l3'],
     accessed: null,
     starred: false,
@@ -19,6 +20,7 @@ const initState = {
   b2: {
     name: 'Grocery List',
     color: 'blue',
+    img: null,
     lists: ['l4', 'l5'],
     accessed: null,
     starred: true,
@@ -26,9 +28,11 @@ const initState = {
 };
 
 function createBoard(state, action) {
-  const { boardId, name, color } = action.payload;
+  const {
+    boardId, name, color, img,
+  } = action.payload;
   const newBoard = {
-    name, color, starred: false, lists: [], accessed: null,
+    name, color, img, starred: false, lists: [], accessed: null,
   };
   return updateObj(state, { [boardId]: newBoard });
 }

@@ -36,5 +36,7 @@ export const deleteCardAction = payload => ({ type: DELETE_CARD, payload });
 // misc actions
 
 export const UPDATE_COLOR = 'UPDATE_COLOR';
+export const UPDATE_UI = 'UPDATE_UI';
 
 export const updateColorAction = payload => ({ type: UPDATE_COLOR, payload });
+export const updateUiAction = payload => ({ type: UPDATE_UI, payload });
