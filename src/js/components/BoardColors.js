@@ -11,6 +11,7 @@ const colorsAndImgs = [
   ['img', 'sea'],
   ['img', 'night'],
   ['img', 'beach'],
+  ['img', 'wood'],
 ];
 
 

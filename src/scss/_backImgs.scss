@@ -1,7 +1,8 @@
 $img-urls: (
-  sea: url("../assets/board_backgrounds/dan-meyers-wJmPL47HJoY-unsplash.jpg"),
-  night: url("../assets/board_backgrounds/jake-weirick-GmpAopbwjaE-unsplash.jpg"),
-  beach: url("../assets/board_backgrounds/janke-laskowski-TqHCfRsBMos-unsplash.jpg"),
+  sea: url("../assets/board_backgrounds/sea.jpg"),
+  night: url("../assets/board_backgrounds/night.jpg"),
+  beach: url("../assets/board_backgrounds/beach.jpg"),
+  wood: url("../assets/board_backgrounds/wood.jpg"),
 );
 
 @each $img, $url in $img-urls {

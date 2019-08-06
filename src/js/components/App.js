@@ -14,30 +14,53 @@ import NoMatchPage from '../pages/noMatchPage';
 
 import AppHeader from './AppHeader';
 
+import imgCredits from '../img-credits';
 
-const AppBody = ({ color, img }) => (
-  <div id="app" className={`d-flex flex-column text-light ${img ? `bg-img-${img}` : ''}`}>
-    <AppHeader />
-    <Router>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/board/:id" component={BoardPage} />
-        <Route component={NoMatchPage} />
-      </Switch>
-    </Router>
-    <footer id="footer" className={`container-fluid bg-${color}`}>
-      <div className="row justify-content-end mr-3">
-        <h4>Lorem ipsum footer</h4>
-      </div>
-    </footer>
-  </div>
-);
+const AppBody = ({ color, img }) => {
+  const credit = imgCredits[img];
+  return (
+    <div id="app" className={`d-flex flex-column text-light ${img ? `bg-img-${img}` : ''}`}>
+      <AppHeader />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/board/:id" component={BoardPage} />
+          <Route component={NoMatchPage} />
+        </Switch>
+      </Router>
+      <footer id="footer" className={`container-fluid bg-${color}`}>
+        <div className="row justify-content-end mr-3">
+          <h6>
+            { credit && (
+              <span>
+                Photo by
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href={credit.url}
+                >
+                  {` ${credit.author} `}
+                </a>
+                on Unsplash
+              </span>
+            )}
+          </h6>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+AppBody.defaultProps = {
+  img: null,
+};
 
 AppBody.propTypes = {
   color: PropTypes.string.isRequired,
+  img: PropTypes.string,
 };
 
-const mapStateToProps = state => ({ 
+const mapStateToProps = state => ({
   color: state.ui.color,
   img: state.ui.img,
 });
