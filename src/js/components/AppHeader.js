@@ -7,7 +7,7 @@ import { updateUiAction } from '../redux/actions';
 
 const AppHeader = ({ color, updatedUI }) => (
   <div id="header" className={`container-fluid bg-${color} p-1`}>
-    <div className="row mx-0">
+    <div className="row mx-0 align-items-center">
       <div className="col-4 px-0">
         <a
           className="btn header bg-trans bg-trans-hover p-1"

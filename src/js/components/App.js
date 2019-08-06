@@ -32,9 +32,10 @@ const AppBody = ({ color, img }) => {
         <div className="row justify-content-end mr-3">
           <h6>
             { credit && (
-              <span>
+              <span className="footer">
                 Photo by
                 <a
+                  className="footer"
                   rel="noopener noreferrer"
                   target="_blank"
                   href={credit.url}
