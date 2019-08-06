@@ -2,7 +2,11 @@
   "name": "reactrello",
   "version": "1.0.0",
   "description": "A simple Trello clone",
-  "keywords": ["trello", "trello-clone", "react"],
+  "keywords": [
+    "trello",
+    "trello-clone",
+    "react"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -39,6 +43,7 @@
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
+    "file-loader": "^4.1.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.8.0",
