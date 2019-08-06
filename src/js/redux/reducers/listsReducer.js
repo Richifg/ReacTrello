@@ -25,11 +25,11 @@ const initState = {
     cards: [],
   },
   l4: {
-    name: 'Stuffn to buy',
+    name: 'Stuff to pack',
     cards: ['c4', 'c5', 'c6', 'c7'],
   },
   l5: {
-    name: 'Bought',
+    name: 'Done',
     cards: [],
   },
 };

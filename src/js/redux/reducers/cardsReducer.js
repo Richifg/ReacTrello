@@ -22,19 +22,19 @@ const initState = {
     checked: false,
   },
   c4: {
-    description: 'Eggs',
+    description: 'Towels',
     checked: false,
   },
   c5: {
-    description: 'Milk',
+    description: 'Sunscreen',
     checked: false,
   },
   c6: {
-    description: 'Bread',
+    description: 'Sandals',
     checked: false,
   },
   c7: {
-    description: 'Frozen pizza',
+    description: 'Beer!',
     checked: false,
   },
 

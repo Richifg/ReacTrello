@@ -11,16 +11,16 @@ import {
 const initState = {
   b1: {
     name: 'Test Board',
-    color: 'gray',
+    color: 'blue',
     img: null,
     lists: ['l1', 'l2', 'l3'],
     accessed: null,
     starred: false,
   },
   b2: {
-    name: 'Grocery List',
-    color: 'blue',
-    img: null,
+    name: 'Beach Trip',
+    color: 'img',
+    img: 'beach',
     lists: ['l4', 'l5'],
     accessed: null,
     starred: true,
