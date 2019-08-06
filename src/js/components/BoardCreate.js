@@ -34,9 +34,7 @@ class CreateModal extends React.Component {
   }
 
   handleClickColor(e) {
-    console.log(e.target.value);
     const [color, img = null] = e.target.value.split('-');
-    console.log(color, img);
     this.setState({ color, img });
   }
 
