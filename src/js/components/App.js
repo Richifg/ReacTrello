@@ -15,7 +15,7 @@ import NoMatchPage from '../pages/noMatchPage';
 
 const touchBackendOptions = {
   enableMouseEvents: true,
-  delayTouchStart: 500,
+  delayTouchStart: 100,
 };
 
 export default () => (

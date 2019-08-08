@@ -109,7 +109,6 @@ class List extends React.Component {
       cards,
       listId,
       onDeleteList,
-      children,
     } = this.props;
     const { isAdding, editId } = this.state;
 
@@ -173,9 +172,6 @@ class List extends React.Component {
   }
 }
 
-List.defaultProps = {
-  children: null,
-};
 
 List.propTypes = {
   listId: PropTypes.string.isRequired,
@@ -186,7 +182,6 @@ List.propTypes = {
   modifyCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
   removeCard: PropTypes.func.isRequired,
-  children: PropTypes.node,
 };
 
 const mapStateToProps = (state, ownProps) => ({

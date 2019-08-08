@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import AppHeader from '../components/AppHeader';
 import AppFooter from '../components/AppFooter';
 import Board from '../components/Board';
+import DragLayer from '../components/DragLayer';
 
 const BoardPage = ({
   match, color, img, exists,
@@ -25,6 +26,7 @@ const BoardPage = ({
         }
       </div>
       <AppFooter />
+      <DragLayer />
     </div>
   );
 };
