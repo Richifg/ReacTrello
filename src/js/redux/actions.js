@@ -15,12 +15,14 @@ export const MODIFY_LIST = 'MODIFY_LIST';
 export const DELETE_LIST = 'DELETE_LIST';
 export const REMOVE_CARD = 'REMOVE_CARD';
 export const ADD_CARD = 'ADD_CARD';
+export const MOVE_CARD = 'MOVE_CARD';
 
 export const createListAction = payload => ({ type: CREATE_LIST, payload });
 export const modifyListAction = payload => ({ type: MODIFY_LIST, payload });
 export const deleteListAction = payload => ({ type: DELETE_LIST, payload });
 export const removeCardAction = payload => ({ type: REMOVE_CARD, payload });
 export const addCardAction = payload => ({ type: ADD_CARD, payload });
+export const moveCardAction = payload => ({ type: MOVE_CARD, payload });
 
 
 // card actions

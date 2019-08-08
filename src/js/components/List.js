@@ -11,6 +11,7 @@ import {
 } from '../redux/actions';
 
 import Card from './Card';
+import CardContainer from './CardContainer';
 import CardInput from './CardInput';
 import CardAddButton from './CardAddButton';
 import CardEditSection from './CardEditSection';
@@ -127,7 +128,7 @@ class List extends React.Component {
           </div>
         </div>
         <div className="card-body px-2 py-0">
-          {cards.map((cardId) => {
+          {cards.map((cardId, index) => {
             if (cardId === editId) {
               return (
                 <CardEditSection
@@ -141,15 +142,16 @@ class List extends React.Component {
               );
             }
             return (
-              <Card
-                cardId={cardId}
-                listId={listId}
-                key={cardId}
-                onClick={this.handleStartEdit}
-              />
+              <CardContainer index={index} listId={listId} key={cardId}>
+                <Card
+                  cardId={cardId}
+                  listId={listId}
+                  onClick={this.handleStartEdit}
+                />
+              </CardContainer>
             );
           })}
-          {children}
+          <CardContainer index={cards.length} listId={listId} key="extra" extra />
           { isAdding && (
             <CardInput
               id="card-input"

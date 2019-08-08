@@ -8,6 +8,7 @@ import {
   DELETE_CARD,
   ADD_CARD,
   REMOVE_CARD,
+  MOVE_CARD,
   DELETE_BOARD,
 } from '../actions';
 
@@ -60,16 +61,35 @@ function deleteCard(state, action) {
   return updateObj(state, { [listId]: updatedList });
 }
 
+function addCardAtIndex(state, action) {
+  const { index, listId, cardId } = action.payload;
+  const newCards = state[listId].cards.slice();
+  newCards.splice(index, 0, cardId);
+  const updatedList = updateObj(state[listId], { cards: newCards });
+  return updateObj(state, { [listId]: updatedList });
+}
+
+function moveCard(state, action) {
+  const { index, listId, cardId } = action.payload;
+  const initialIndex = state[listId].cards.indexOf(cardId);
+  const finalIndex = index > initialIndex ? index - 1 : index;  
+  const newCards = state[listId].cards.filter(id => id !== cardId);
+  newCards.splice(finalIndex, 0, cardId);
+  const updatedList = updateObj(state[listId], { cards: newCards });
+  return updateObj(state, { [listId]: updatedList });
+}
+
 
 const listsReducer = (state = initState, action) => {
   switch (action.type) {
     case CREATE_LIST: return createList(state, action);
     case MODIFY_LIST: return modifyList(state, action);
     case DELETE_LIST: return deleteFromObj(state, action.payload.listId);
-    case ADD_CARD:
+    case ADD_CARD: return addCardAtIndex(state, action);
     case CREATE_CARD: return createCard(state, action);
     case REMOVE_CARD:
     case DELETE_CARD: return deleteCard(state, action);
+    case MOVE_CARD: return moveCard(state, action);
     case DELETE_BOARD: return deleteFromObj(state, action.payload.listIds);
     default: return state;
   }

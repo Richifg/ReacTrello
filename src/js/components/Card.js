@@ -24,7 +24,7 @@ const Card = ({
   return (
     <div
       ref={drag}
-      className={`card card-display bg-light container mb-2 px-2 py-1 ${isDragging ? 'dragging' : ''}`}
+      className={`card card-display bg-light container px-2 py-1 ${isDragging ? 'dragging' : ''}`}
     >
       <div className="row mx-0">
         <div className="col-11 px-0">
