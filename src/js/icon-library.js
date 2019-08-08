@@ -6,6 +6,7 @@ import {
   faTimes,
   faPen,
   faClipboardList,
+  faFeatherAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 // outline icons
@@ -24,6 +25,7 @@ library.add(
   faTimes,
   faPen,
   faClipboardList,
+  faFeatherAlt,
   faUser,
   faStar,
   faClock,

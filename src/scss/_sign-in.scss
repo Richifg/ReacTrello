@@ -1,0 +1,32 @@
+.sign-in-button {
+  width: 20rem;
+  border-radius: 0.5rem;
+  color: white;
+  background-color: $blue;
+  background-image: linear-gradient( 90deg, rgb(21, 83, 199), rgb(0, 140, 255));
+  font-size: 1.1rem;
+
+  &:hover { 
+    color: white;
+  }
+}
+.sign-in-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5rem;
+  color: $blue;
+}
+
+.sign-in-sign {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.sign-in-or {
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.sign-in-icon {
+  color: $blue;
+  font-size: 10rem;
+}
