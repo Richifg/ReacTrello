@@ -36,7 +36,7 @@ AppFooter.propTypes = {
 
 const mapStateToProps = state => ({
   color: state.ui.color,
-  img: state.ui.color,
+  img: state.ui.img,
 });
 
 export default connect(mapStateToProps)(AppFooter);
