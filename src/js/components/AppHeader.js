@@ -11,7 +11,7 @@ const AppHeader = ({ color, updatedUI }) => (
       <div className="col-4 px-0">
         <a
           className="btn header bg-trans bg-trans-hover p-1"
-          href="#/"
+          href="#/home"
           onClick={() => updatedUI()}
         >
           <FontAwesomeIcon className="text-light" icon="home" />
@@ -21,11 +21,11 @@ const AppHeader = ({ color, updatedUI }) => (
         <div className="row justify-content-center">
           <a
             className="btn header text-trans text-trans-hover d-flex p-1"
-            href="#/"
+            href="#/home"
             onClick={() => updatedUI()}
             style={{ fontFamily: "'Pacifico', cursive" }}
           >
-            <FontAwesomeIcon icon="clipboard-list" />
+            <FontAwesomeIcon icon="feather-alt" />
             <h1 className="header ml-1 my-0">ReacTrello</h1>
           </a>
         </div>
