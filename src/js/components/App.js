@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
-import Html5Backend from 'react-dnd-html5-backend';
+import TouchBackend from 'react-dnd-touch-backend';
 
 import store from '../redux/store';
 
@@ -13,9 +13,14 @@ import LoginPage from '../pages/loginPage';
 import NoMatchPage from '../pages/noMatchPage';
 
 
+const touchBackendOptions = {
+  enableMouseEvents: true,
+  delayTouchStart: 500,
+};
+
 export default () => (
   <Provider store={store}>
-    <DndProvider backend={Html5Backend}>
+    <DndProvider backend={TouchBackend} options={touchBackendOptions}>
       <Router>
         <Switch>
           <Route exact path="/" component={LoginPage} />
