@@ -115,7 +115,7 @@ class Board extends React.Component {
           <div className="col-autol ml-auto">
             <a
               className="btn bg-trans-dark-hover board-header-icon"
-              href="#/"
+              href="#/home"
               onClick={this.handleDeleteBoard}
             >
               <FontAwesomeIcon icon="trash" />
