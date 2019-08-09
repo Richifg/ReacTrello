@@ -14,7 +14,7 @@ const initState = {
     checked: false,
   },
   c2: {
-    description: 'Drag me to another list!!',
+    description: 'Card 2',
     checked: false,
   },
   c3: {
@@ -22,19 +22,19 @@ const initState = {
     checked: false,
   },
   c4: {
-    description: 'Towels',
+    description: 'Telescope',
     checked: false,
   },
   c5: {
-    description: 'Sunscreen',
+    description: 'Blackets',
     checked: false,
   },
   c6: {
-    description: 'Sandals',
+    description: 'Hot Chocolate',
     checked: false,
   },
   c7: {
-    description: 'Beer!',
+    description: 'Drag cards here!',
     checked: false,
   },
 

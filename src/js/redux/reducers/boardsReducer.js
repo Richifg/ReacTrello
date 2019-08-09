@@ -10,6 +10,14 @@ import {
 
 const initState = {
   b1: {
+    name: 'Cool Board with background',
+    color: 'img',
+    img: 'night',
+    lists: ['l4', 'l5'],
+    accessed: null,
+    starred: false,
+  },
+  b2: {
     name: 'Test Board',
     color: 'blue',
     img: null,
@@ -17,13 +25,29 @@ const initState = {
     accessed: null,
     starred: false,
   },
-  b2: {
-    name: 'Beach Trip',
-    color: 'img',
-    img: 'beach',
-    lists: ['l4', 'l5'],
+  b3: {
+    name: 'test board 2',
+    color: 'orange',
+    img: null,
+    lists: [],
     accessed: null,
-    starred: true,
+    starred: false,
+  },
+  b4: {
+    name: 'test board 3',
+    color: 'green',
+    img: null,
+    lists: [],
+    accessed: null,
+    starred: false,
+  },
+  b5: {
+    name: 'test board 4',
+    color: 'img',
+    img: 'sea',
+    lists: [],
+    accessed: null,
+    starred: false,
   },
 };
 

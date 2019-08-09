@@ -26,12 +26,12 @@ const initState = {
     cards: [],
   },
   l4: {
-    name: 'Stuff to pack',
-    cards: ['c4', 'c5', 'c6', 'c7'],
+    name: 'Stargarzing checklist',
+    cards: ['c4', 'c5', 'c6'],
   },
   l5: {
-    name: 'Done',
-    cards: [],
+    name: 'Already packed',
+    cards: ['c7'],
   },
 };
 
@@ -72,7 +72,7 @@ function addCardAtIndex(state, action) {
 function moveCard(state, action) {
   const { index, listId, cardId } = action.payload;
   const initialIndex = state[listId].cards.indexOf(cardId);
-  const finalIndex = index > initialIndex ? index - 1 : index;  
+  const finalIndex = index > initialIndex ? index - 1 : index;
   const newCards = state[listId].cards.filter(id => id !== cardId);
   newCards.splice(finalIndex, 0, cardId);
   const updatedList = updateObj(state[listId], { cards: newCards });
