@@ -123,8 +123,8 @@ class Board extends React.Component {
             </a>
           </div>
         </div>
-        <ScrollX className="h-100">
-          <div className="d-flex flex-row">
+        <ScrollX>
+          <div className="d-flex flex-row h-100">
             {
               lists.map(listId => (
                 <div className="col-auto ml-0 mr-2 px-0" key={listId}>

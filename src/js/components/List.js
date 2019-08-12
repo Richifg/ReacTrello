@@ -113,7 +113,7 @@ class List extends React.Component {
     const { isAdding, editId } = this.state;
 
     return (
-      <div className="card list mb-4 text-dark">
+      <div className="card list mb-4 text-dark" style={{ maxHeight: '100%' }}>
         <div className="card-title container px-0">
           <div className="row mx-0">
             <h6 className="pt-2 ml-3 mb-0">{name}</h6>
@@ -126,7 +126,7 @@ class List extends React.Component {
             </button>
           </div>
         </div>
-        <div className="card-body px-2 py-0">
+        <div className="card-body px-2 py-0 scroll-y">
           {cards.map((cardId, index) => {
             if (cardId === editId) {
               return (
