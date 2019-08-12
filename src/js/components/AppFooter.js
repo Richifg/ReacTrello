@@ -10,19 +10,22 @@ const AppFooter = ({ img, color }) => {
     <footer id="footer" className={`container-fluid bg-${color}`}>
       <div className="row justify-content-end mr-3">
         <h6>
-          { credit && (
-            <span className="footer">
-              Photo by
-              <a
-                className="footer"
-                rel="noopener noreferrer"
-                target="_blank"
-                href={credit.url}
-              >
-                {` ${credit.author} `}
-              </a>
-            </span>
-          )}
+          { credit
+            ? (
+              <span className="footer">
+                {'Photo by '}
+                <a
+                  className="footer"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href={credit.url}
+                >
+                  {credit.author}
+                </a>
+              </span>
+            )
+            : 'Lorem Ipsum'
+          }
         </h6>
       </div>
     </footer>
