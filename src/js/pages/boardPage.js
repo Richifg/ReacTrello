@@ -14,7 +14,7 @@ const BoardPage = ({
   return (
     <div id="app" className={`d-flex flex-column text-light ${img ? `bg-img-${img}` : ''}`}>
       <AppHeader />
-      <div id="content" className={`container-fluid py-2 bg-light-${color}`}>
+      <div id="content" className={`container-fluid py-2 px-0 bg-light-${color}`}>
         { exists
           ? <Board boardId={id} />
           : (

@@ -13,6 +13,7 @@ import {
 
 import List from './List';
 import ListAddButton from './ListAddButton';
+import { ScrollX } from './CustomScroll';
 import { getNewId } from '../utils';
 
 
@@ -98,7 +99,7 @@ class Board extends React.Component {
     const { lists, name, starred } = this.props;
     const { isAdding } = this.state;
     return (
-      <div className="d-flex flex-column">
+      <div className="d-flex flex-column w-100 h-100 position-absolute pb-4 px-2">
         <div className="row mx-0 mb-3 align-items-center">
           <div className="col-auto">
             <h3 className="board-header-title">{name}</h3>
@@ -122,25 +123,27 @@ class Board extends React.Component {
             </a>
           </div>
         </div>
-        <div className="row">
-          {
-            lists.map(listId => (
-              <div className="col-auto" key={listId}>
-                <List listId={listId} onDeleteList={this.handleDeleteList} />
-              </div>
-            ))
-          }
-          <div className="col-auto" key="add">
-            <ListAddButton
-              isAdding={isAdding}
-              count={lists.length}
-              handleAdd={this.handleAddList}
-              handleCancel={this.handleCancelList}
-              handleSave={this.handleSaveList}
-              handleChange={this.handleChange}
-            />
+        <ScrollX className="h-100">
+          <div className="d-flex flex-row">
+            {
+              lists.map(listId => (
+                <div className="col-auto ml-0 mr-2 px-0" key={listId}>
+                  <List listId={listId} onDeleteList={this.handleDeleteList} />
+                </div>
+              ))
+            }
+            <div className="col-auto ml-0 mr-2 px-0" key="add">
+              <ListAddButton
+                isAdding={isAdding}
+                count={lists.length}
+                handleAdd={this.handleAddList}
+                handleCancel={this.handleCancelList}
+                handleSave={this.handleSaveList}
+                handleChange={this.handleChange}
+              />
+            </div>
           </div>
-        </div>
+        </ScrollX>
       </div>
     );
   }
