@@ -1,5 +1,6 @@
 
 .list {
+  font-size: $list-font-size;
   background-color:#e1e3e6;
   width: $list-width;
 
@@ -8,8 +9,20 @@
   }
 }
 
+/* 
+  some elements are too nested and have their own
+  font-size overwrite due to bootstrap classes, this
+  class is just a cheap dirty way of correcting this
+*/
+.list-font-size {
+  font-size: $list-font-size;
+}
+
+.list-title {
+  font-weight: bold;
+}
+
 .list-footer {
-  cursor: pointer;
   &:hover {
     background-color:#c0c7d1;
     color: rgb(31, 46, 46) !important;
@@ -19,6 +32,7 @@
 
 .list-add {
   width: $list-width;
+  font-size: $list-font-size;
 }
 
 .delete-list-btn {

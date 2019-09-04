@@ -116,7 +116,7 @@ class List extends React.Component {
       <div className="card list mb-4 text-dark" style={{ maxHeight: '100%' }}>
         <div className="card-title container px-0">
           <div className="row mx-0">
-            <h6 className="pt-2 ml-3 mb-0">{name}</h6>
+            <span className="list-title pt-2 ml-3 mb-0">{name}</span>
             <button
               type="button"
               onClick={() => onDeleteList(listId, cards)}

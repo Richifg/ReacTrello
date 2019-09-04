@@ -14,13 +14,13 @@ const AppHeader = ({ color, updatedUI }) => (
           href="#/home"
           onClick={() => updatedUI()}
         >
-          <FontAwesomeIcon className="text-light" icon="home" />
+          <FontAwesomeIcon className="text-light header-icon" icon="home" />
         </a>
       </div>
       <div className="col-4">
         <div className="row justify-content-center">
           <a
-            className="btn header text-trans text-trans-hover d-flex p-1"
+            className="btn header text-trans text-trans-hover d-flex p-0"
             href="#/home"
             onClick={() => updatedUI()}
             style={{ fontFamily: "'Pacifico', cursive" }}

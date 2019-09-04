@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const CardInput = props => (
   <textarea
     placeholder="Enter a description for this card..."
-    className="form-control mb-2"
+    className="form-control mb-2 list-font-size"
     autoFocus
     {...props}
   />

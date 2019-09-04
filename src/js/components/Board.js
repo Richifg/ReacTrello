@@ -104,7 +104,7 @@ class Board extends React.Component {
           <div className="col-auto">
             <h3 className="board-header-title">{name}</h3>
           </div>
-          <div className="col-auto">
+          <div className="col-auto px-0">
             <button
               type="button"
               onClick={this.handleStarred}

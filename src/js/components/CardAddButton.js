@@ -11,8 +11,8 @@ const CardAddButton = ({
 }) => {
   if (isAdding) {
     return (
-      <div className="p-2">
-        <button id="add-card-btn" type="button" className="btn btn-success" onClick={handleSave}>Add Card</button>
+      <div className="p-2 d-flex align-content-center justify-content-between">
+        <button id="add-card-btn" type="button" className="btn btn-success list-font-size" onClick={handleSave}>Add Card</button>
         <button type="button" className="close" aria-label="close" onClick={handleCancel}>
           <FontAwesomeIcon icon="times" />
         </button>
