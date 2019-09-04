@@ -1,12 +1,7 @@
-$board-display-height: 6rem;
-$board-display-width: 12rem;
-$board-color-size: 30px;
-$board-color-border-size: 1px;
-
 // home page board styles
 
 .board-section-title { 
-  font-size: 1em;
+  font-size: $board-section-title-font-size;
   font-weight: bold;
   vertical-align: middle;
   color: #172b4d;
@@ -23,7 +18,7 @@ $board-color-border-size: 1px;
 };
 
 .board-display-title {
-  font-size: 1em;
+  font-size: $board-display-title-font-size;
   vertical-align: text-top;
   text-align: left;
   height: 100%;
@@ -31,10 +26,10 @@ $board-color-border-size: 1px;
 }
 
 .board-display-star {
-  font-size: 0.8em;
+  font-size: $board-display-star-font-size;
   transition: font-size 0.2s;
   &:hover {
-    font-size: 1em;
+    font-size: $board-display-star-font-size * 1.25;
   }
 }
 
@@ -59,7 +54,7 @@ $board-color-border-size: 1px;
   }
 
   .board-display-container {
-    width: 60rem;
+    width: $board-display-container-width;
   }
 }
 
@@ -68,7 +63,7 @@ $board-color-border-size: 1px;
   color: white;
   border: none;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: $board-modal-title-font-size;
   background-color: transparent;
   &:focus {
     color: white;
@@ -110,13 +105,13 @@ $board-color-border-size: 1px;
 // board page styles
 
 .board-header-title { 
-  font-size: 1.3em;
+  font-size: $board-header-title-font-size;
   color: white;
   margin-bottom: 0;
 }
 
 .board-header-icon {
-  font-size: 1.1em;
+  font-size: $board-header-icon-font-size;
   color: white;
 
   &:hover {
