@@ -29,7 +29,7 @@ const BoardColors = ({ onClick, selectedColor, selectedImg }) => (
               name="board-color"
               onClick={onClick}
             />
-            <span className={`board-color-option bg-${color} bg-${color}-hover ${img ? `bg-img-${img}` : ''}`}>
+            <span className={`board-color-option bg-${color} bg-${color}-hover ${img ? `bg-img-small-${img}` : ''}`}>
               {color === selectedColor && img === selectedImg
                && <FontAwesomeIcon icon={['far', 'check-circle']} className="color-check-icon" />}
             </span>

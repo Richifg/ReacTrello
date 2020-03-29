@@ -1,12 +1,28 @@
 $img-urls: (
-  sea: url("../assets/board_backgrounds/sea.jpg"),
-  night: url("../assets/board_backgrounds/night.jpg"),
-  beach: url("../assets/board_backgrounds/beach.jpg"),
-  wood: url("../assets/board_backgrounds/wood.jpg"),
+  sea: url("../assets/board_backgrounds/sea-big.jpg"),
+  night: url("../assets/board_backgrounds/night-big.jpg"),
+  beach: url("../assets/board_backgrounds/beach-big.jpg"),
+  wood: url("../assets/board_backgrounds/wood-big.jpg"),
+);
+
+$img-small-urls: (
+  sea: url("../assets/board_backgrounds/sea-small.jpg"),
+  night: url("../assets/board_backgrounds/night-small.jpg"),
+  beach: url("../assets/board_backgrounds/beach-small.jpg"),
+  wood: url("../assets/board_backgrounds/wood-small.jpg"),
 );
 
 @each $img, $url in $img-urls {
   .bg-img-#{$img} {
+    background-image: $url;
+    background-color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+@each $img, $url in $img-urls {
+  .bg-img-small-#{$img} {
     background-image: $url;
     background-color: white;
     background-size: cover;

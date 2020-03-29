@@ -17,7 +17,7 @@ const BoardDisplay = ({
   <div className="col-lg-auto col-md-4 col-6 my-2">
     <a
       role="button"
-      className={`btn btn-block text-light board-display bg-${color} bg-${color}-hover ${img ? `bg-img-${img}` : ''}`}
+      className={`btn btn-block text-light board-display bg-${color} bg-${color}-hover ${img ? `bg-img-small-${img}` : ''}`}
       href={`#/board/${boardId}`}
       onClick={() => updateUI({ color, img })}
     >
