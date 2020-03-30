@@ -21,7 +21,7 @@ $img-small-urls: (
   }
 }
 
-@each $img, $url in $img-urls {
+@each $img, $url in $img-small-urls {
   .bg-img-small-#{$img} {
     background-image: $url;
     background-color: white;
