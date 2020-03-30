@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const SignInButton = ({ text }) => (
   <a
     href="#/home"
-    className="sign-in-button text-center p-3"
+    className="sign-in-button text-center p-3 mt-5"
   >
     {text}
   </a>

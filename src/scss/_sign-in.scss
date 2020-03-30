@@ -1,10 +1,10 @@
 .sign-in-button {
-  width: 20rem;
+  width: 18rem;
   border-radius: 0.5rem;
   color: white;
   background-color: $blue;
   background-image: linear-gradient( 90deg, rgb(21, 83, 199), rgb(0, 140, 255));
-  font-size: 1$signin-button-font-size;
+  font-size: $signin-button-font-size;
 
   &:hover { 
     color: white;
@@ -14,7 +14,16 @@
   font-family: 'Pacifico', cursive;
   font-size: $signin-title-font-size;
   color: $blue;
+  opacity: 0;
+  transform: scale(0);
+  animation: popup $title-animation-duration ease-out $logo-animation-duration forwards;
 }
+
+@keyframes popup {
+  80% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
 
 .sign-in-sign {
   font-size: $signin-label-font-size;
@@ -29,4 +38,39 @@
 .sign-in-icon {
   color: $blue;
   font-size: $signin-icon-font-size;
+}
+
+// keyframes on same property overwrite each otehr so have to add each to a different wrapper
+.sign-in-icon-wrapper1 {
+  transform: translateY(-150%);
+  animation: fall $logo-animation-duration ease-out forwards;
+}
+
+@keyframes fall {
+  30% {transform: translateY(-100%)}
+  33% {transform: translateY(-95%)}
+  63% {transform: translateY(-40%)}
+  66% {transform: translateY(-35%)}
+  100% {transform: translateY(0)}
+}
+
+.sign-in-icon-wrapper2 {
+  animation: rotate $logo-animation-duration ease-out forwards;
+  transform: rotate(25deg) scale(0.6);
+}
+
+@keyframes rotate {
+  33% {transform: rotate(-10deg) scale(0.8)}
+  66% {transform: rotate(25deg) scale(0.9)}
+  100% {transform: rotate(0) scale(1)}
+}
+
+.sign-in-icon-wrapper3 {
+  animation: shift $logo-animation-duration ease-in-out forwards;
+}
+
+@keyframes shift {
+  33% {transform: translateX(50%)}
+  66% {transform: translateX(-30%)}
+  100% {transform: translateX(0)}
 }
