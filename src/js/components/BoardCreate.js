@@ -41,15 +41,13 @@ class CreateModal extends React.Component {
   handleClickCreate(e) {
     if (!e.key || e.key === 'Enter') {
       const { name, color, img } = this.state;
-      if (name) {
-        const { createBoard } = this.props;
-        const boardId = getNewId();
-        createBoard({
-          boardId, name, color, img,
-        });
-        this.setState({ name: '' });
-        document.getElementById('modal-close').click();
-      }
+      const { createBoard } = this.props;
+      const boardId = getNewId();
+      createBoard({
+        boardId, name, color, img,
+      });
+      this.setState({ name: '' });
+      document.getElementById('modal-close').click();
     }
   }
 
@@ -66,7 +64,7 @@ class CreateModal extends React.Component {
             <div className="modal-body p-2">
               <div className="row mx-0">
                 <div className="col-12 col-md-9 p-0">
-                  <div className={`card board-display-preview bg-${color} ${img ? `bg-img-${img}` : ''}`}>
+                  <div className={`card board-display-preview bg-${color} ${img ? `bg-img-small-${img}` : ''}`}>
                     <input
                       id="new-board-title-input"
                       type="text"
@@ -79,12 +77,23 @@ class CreateModal extends React.Component {
                   </div>
                 </div>
                 <div className="col-12 col-md-3 p-0">
-                  <BoardColors onClick={this.handleClickColor} selectedColor={color} selectedImg={img} />
+                  <BoardColors
+                    onClick={this.handleClickColor}
+                    selectedColor={color}
+                    selectedImg={img}
+                  />
                 </div>
               </div>
             </div>
             <div className="modal-footer px-2 pb-2 pt-0 justify-content-start border-top-0">
-              <button type="button" className="btn btn-success" onClick={this.handleClickCreate}>Create Board</button>
+              <button
+                type="button"
+                className="btn btn-success"
+                disabled={!name}
+                onClick={this.handleClickCreate}
+              >
+                Create Board
+              </button>
               <button type="button" className="btn btn-danger" id="modal-close" data-dismiss="modal">Cancel</button>
             </div>
           </div>
