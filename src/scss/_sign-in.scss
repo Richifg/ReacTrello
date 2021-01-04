@@ -40,7 +40,7 @@
   font-size: $signin-icon-font-size;
 }
 
-// keyframes on same property overwrite each otehr so have to add each to a different wrapper
+// keyframes on same property overwrite each other so have to add each to a different wrapper
 .sign-in-icon-wrapper1 {
   transform: translateY(-150%);
   animation: fall $logo-animation-duration ease-out forwards;
