@@ -1,28 +1,17 @@
 # ReacTrello
 A simple Trello clone built with react and bootstrap. Local storage is used to saved data.
 
-You can create multiple board with different backgrounds. The app keeps track of recently viewed boards and also allows to set them as starred so they show up on top.
+You can create multiple board with different backgrounds. The app keeps track of recently viewed boards and also allows to set them as starred so they show up at the top of the page.
 
 Each board can have multiple lists each with its own cards. Cards can be edited and drag between lists.
 
 ## Installation
 
-### Requirements
-
-  * Node.js package manager (npm).
-
-### Instructions
-
-  1. Clone the repository:  
-   ```npm clone https://github.com/Richifg/ReacTrello```
-      
-  2. Navigate into the created directory:  
-   ```cd reactrello```
-      
-  3. Install the dependencies:  
-  ```npm install```
-  
-  5. You should now be able to access the app at http://localhost:8080
+You can run the app locally by runnin the folling commands:
+  - `npm install` 
+    (to install dependencies)
+  - `npm run start` 
+    (to start a devserver at http://localhost:8080/)
 
 ## Preview
 ![Preview](https://res.cloudinary.com/richi/image/upload/v1585532406/previews/reacttrello-preview_atagxo.gif)
