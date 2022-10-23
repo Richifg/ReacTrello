@@ -18,4 +18,4 @@ You can run the app locally by runnin the folling commands:
 
 ## Demo
 
-Lived demo available here: https://reactrello.richifg.now.sh
+Live demo available here: https://reactrello.richifg.now.sh
